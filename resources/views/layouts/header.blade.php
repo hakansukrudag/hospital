@@ -44,7 +44,7 @@
                   </ul>
               <li><a class="active">Home</a>
                 <ul>
-                  <li><a href="index_hsd.html">Home</a></li>
+                  <li><a href="{{ mix('home') }}">Home</a></li>
 
 
                 </ul>
