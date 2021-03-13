@@ -22,7 +22,7 @@
   <div class="container">
     <div class="row">
         <div class="col-lg-2 col-md-2 col-sm-12">
-          <div id="hs_logo" > <a href="index_hsd.html"> <img src="{{ asset('images/logom.svg') }}" alt=""> </a> </div>
+          <div id="hs_logo" > <a href="{{ mix('home') }}"> <img src="{{ asset('images/logom.svg') }}" alt=""> </a> </div>
 
           <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               Logout
