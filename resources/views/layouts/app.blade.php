@@ -12,7 +12,7 @@
     <!-- Scripts -->
 {{--    <script src="{{ mix('js/app.js') }}" defer></script>--}}
 
-
+    <link href="{{ mix('css/custom.css') }}" rel="stylesheet">
     <!-- Styles -->
 {{--    <link href="{{ mix('css/app.css') }}" rel="stylesheet">--}}
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}" media="screen"/>

@@ -29,11 +29,14 @@
           <button type="button" class="hs_nav_toggle navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">Menu<i class="fa fa-bars"></i></button>
           <nav>
             <ul class="hs_menu collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <li><a class="active">Login</a>
-                <ul>
-                  <li><a href="{{ route('login') }}">Login</a></li>
-                  <li><a href="{{ route('register') }}">Register</a></li>
-                  </ul>
+              @if (Auth::guest())
+                <li><a class="active">Login</a>
+                  <ul>
+                    <li><a href="{{ route('login') }}">Login</a></li>
+                    <li><a href="{{ route('register') }}">Register</a></li>
+                    </ul>
+                </li>
+              @endif
               <li><a class="active">Home</a>
                 <ul>
                   <li><a href="index_hsd.html">Home</a></li>
