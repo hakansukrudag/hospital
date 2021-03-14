@@ -23,14 +23,6 @@
     <div class="row">
         <div class="col-lg-2 col-md-2 col-sm-12">
           <div id="hs_logo" > <a href="index_hsd.html"> <img src="{{ asset('images/logom.svg') }}" alt=""> </a> </div>
-
-          <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-              Logout
-          </a>
-
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-              {{ csrf_field() }}
-          </form>
           <!-- #logo -->
         </div>
         <div class="col-lg-8 col-md-8 col-sm-10">
@@ -84,6 +76,18 @@
               <li><a href="profile.html">Play</a></li>
               <li><a href="blog-categories.html">Learn</a></li>
               <li><a href="contact.html">Contact</a></li>
+
+              <li>
+             @if (Auth::check())
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    Logout
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+             @endif
+              </li>
             </ul>
           </nav>
         </div>
