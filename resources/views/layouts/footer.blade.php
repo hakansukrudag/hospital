@@ -32,8 +32,8 @@
             <div class="col-lg-4 col-md-3 col-sm-12">
               <h4 class="hs_heading">Get in touch !</h4>
               <div class="hs_contact_detail">
-                <p><i class="fa fa-map-marker"></i> 13/2 Elizabeth Street Melbourne VIC 3000, Australia</p>
-                <p><i class="fa fa-mobile-phone"></i> +61 3 8376 6284</p>
+                <p><i class="fa fa-map-marker"></i> 3/2 Berkeley Street Glasgow, UK</p>
+                <p><i class="fa fa-mobile-phone"></i> +44 141 272 9000</p>
                 <div class="clearfix"></div>
                 <div class="hs_social">
                   <ul>
@@ -84,14 +84,14 @@
             <div class="col-lg-12 col-md-12 col-sm-12 hs_twitter_widget">
               <ul>
                 <li> <i class="fa fa-twitter"></i> <a href="">
-                  <p>@healthcare...  Suspende potenti. Etiam ullamcorper scelerisque bibendumonec cursus,  eleifend semper. <br>
+                  <p>@hospitalportal...  Suspende potenti. Etiam ullamcorper scelerisque bibendumonec cursus,  eleifend semper. <br>
                     <br>
-                    <strong>17 hours ago</strong> </p>
+                    <strong>19 hours ago</strong> </p>
                   </a> </li>
                 <li> <i class="fa fa-twitter"></i> <a href="">
-                  <p>@Hsoftindia...  Suspende potenti. Etiam ullamcorper scelerisque bibendumonec cursus,  eleifend semper. <br>
+                  <p>@hospitalportal...  Suspende potenti. Etiam ullamcorper scelerisque bibendumonec cursus,  eleifend semper. <br>
                     <br>
-                    <strong>2 min ago</strong> </p>
+                    <strong>22 min ago</strong> </p>
                   </a> </li>
               </ul>
             </div>
@@ -101,4 +101,4 @@
     </div>
   </div>
 </footer>
-<div class="hs_copyright">Copyright © 2018 Health Care HTML Template. All Rights Reserved.</div>
+<div class="hs_copyright">Copyright © 2020 Glasgow Clyde College Web Enginineering 2 Class.</div>

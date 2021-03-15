@@ -39,7 +39,7 @@
               @endif
               <li><a class="active">Home</a>
                 <ul>
-                  <li><a href="index_hsd.html">Home</a></li>
+                  <li><a href="{{ url('/') }}">Home</a></li>
 
 
                 </ul>
@@ -78,7 +78,7 @@
               </li>
               <li><a href="profile.html">Play</a></li>
               <li><a href="blog-categories.html">Learn</a></li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="{{ url('/contact') }}">Contact</a></li>
 
               <li>
              @if (Auth::check())
