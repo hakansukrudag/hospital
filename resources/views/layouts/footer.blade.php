@@ -5,12 +5,12 @@
         <div class="col-lg-12">
           <div class="hs_footer_menu">
             <ul>
-              <li><a href="index.html">Home</a></li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="services.html">Services</a></li>
-              <li><a href="blog-categories.html">Blog</a></li>
-              <li><a href="profile.html">Our profile</a></li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="{{ url('/') }}">Home</a></li>
+              <li><a href="{{ url('/about') }}">About</a></li>
+              <li><a href="{{ url('/services') }}">Services</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Our profile</a></li>
+              <li><a href="{{ url('/contact') }}">Contact</a></li>
             </ul>
           </div>
         </div>
@@ -21,7 +21,7 @@
             <div class="hs_footer_about_us">
               <div class="col-lg-3 col-md-4 col-sm-12 col-md-12 col-sm-12">
                 <h4 class="hs_heading">About Us</h4>
-                <a href="index.html"><img src="{{ asset('images/logo.svg') }}" alt="logo" width="180" height="41" /></a> </div>
+                <a href="{{ url('/') }}"><img src="{{ asset('images/logom.svg') }}" alt="logo" width="180" height="41" /></a> </div>
               <div class="col-lg-9 col-md-8 col-sm-12 hs_about_us">
                 <div class="hs_margin_60"></div>
                 <p>Aenean facilisis sodales est neciMorbi vitapurus on Est facilisisro convallis commodo velante, tiam ltricies lputate.Aenean facilisis sodales est neciMorbi vitapurus on Est facilisisro convallis commodo velante, tiam ltricies lputate. </p>
@@ -50,29 +50,27 @@
               <div class="clearfix"></div>
               <div class="hs_footer_link">
                 <ul>
-                  <li><a href="services.html">Pediatric Clinic</a></li>
-                  <li><a href="services.html">Dental Clinic</a></li>
-                  <li><a href="services.html">General Surgery</a></li>
-                  <li><a href="services.html">Physiotherapy</a></li>
-                  <li><a href="services.html">Ltricies lputate</a></li>
+                  <li><a href="#">Pediatric Clinic</a></li>
+                  <li><a href="#">Dental Clinic</a></li>
+                  <li><a href="#">General Surgery</a></li>
+                  <li><a href="#">Physiotherapy</a></li>
+                  <li><a href="#">Ltricies lputate</a></li>
                 </ul>
               </div>
               <div class="hs_footer_link">
                 <ul>
-                  <li><a href="blog-categories.html">Blog Categories</a></li>
-                  <li><a href="services-two-column.html">services Two Column</a></li>
-                  <li><a href="blog-single-post.html">Blog Single Post</a></li>
-                  <li><a href="services.html">services Three Column</a></li>
-                  <li><a href="blog-single-post-leftsidebar.html">Blog Leftsidebar</a></li>
+                  <li><a href="#">Blog Categories</a></li>
+                  <li><a href="#">services Two Column</a></li>
+                  <li><a href="#">Blog Single Post</a></li>
+                  <li><a href="#">services Three Column</a></li>
+                  <li><a href="#">Blog Leftsidebar</a></li>
                 </ul>
               </div>
               <div class="hs_footer_link">
                 <ul>
-                  <li><a href="blog-single-post-rightsidebar.html">Blog Rightsidebar</a></li>
-                  <li><a href="typography.html">Typography</a></li>
-                  <li><a href="elements.html">Elements</a></li>
-                  <li><a href="columns.html">columns</a></li>
-                  <li><a href="icon.html">icon</a></li>
+                  <li><a href="#">Blog Rightsidebar</a></li>
+                  <li><a href="#">Elements</a></li>
+
                 </ul>
               </div>
             </div>

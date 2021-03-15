@@ -22,7 +22,7 @@
   <div class="container">
     <div class="row">
         <div class="col-lg-2 col-md-2 col-sm-12">
-          <div id="hs_logo" > <a href="index_hsd.html"> <img src="{{ asset('images/logom.svg') }}" alt=""> </a> </div>
+          <div id="hs_logo" > <a href="{{ url('/') }}"> <img src="{{ asset('images/logom.svg') }}" alt=""> </a> </div>
           <!-- #logo -->
         </div>
         <div class="col-lg-8 col-md-8 col-sm-10">
@@ -44,10 +44,10 @@
 
                 </ul>
               </li>
-              <li><a href="about.html">Team</a></li>
+              <li><a href="{{ url('/about') }}">About</a></li>
               <li><a>Clicical</a>
                 <ul>
-                  <li><a href="services.html">Maternity Care</a></li>
+                  <li><a href="#">Maternity Care</a></li>
 
 
                 </ul>
@@ -56,28 +56,28 @@
                 <ul>
                   <li><a>Blog</a>
                     <ul>
-                      <li><a href="blog-categories.html">Blog Categories</a></li>
+                      <li><a href="#">Blog Categories</a></li>
 
                     </ul>
                   </li>
                   <li><a>services</a>
                     <ul>
 
-                      <li><a href="services.html">services Three Column</a></li>
+                      <li><a href="#">services Three Column</a></li>
 
                     </ul>
                   </li>
                   <li><a>profile</a>
                     <ul>
-                      <li><a href="profile-single.html">profile single</a></li>
+                      <li><a href="#">profile single</a></li>
                     </ul>
                   </li>
-                  <li><a href="elements.html">Elements</a></li>
+                  <li><a href="#">Elements</a></li>
 
                 </ul>
               </li>
-              <li><a href="profile.html">Play</a></li>
-              <li><a href="blog-categories.html">Learn</a></li>
+              <li><a href="#">Play</a></li>
+
               <li><a href="{{ url('/contact') }}">Contact</a></li>
 
               <li>
