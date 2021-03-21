@@ -11,7 +11,7 @@
 				<div class="hlc_topheader_textright">
 					<p><i class="fa fa-volume-control-phone" aria-hidden="true"></i> Question? Call Us at +0141 272 9000 </p>
 
-           <div class="col-lg-10 col-md-12 col-sm-12"> <img width="100" height="66" src="{{ asset('images/NHS_Scotland_100x66.png') }}" alt=""> </div>
+           <div class="col-lg-10 col-md-12 col-sm-12"> <img width="100" height="66" src="{{ asset('images/nhs.png') }}" alt=""> </div>
 
         </div>
       </div>

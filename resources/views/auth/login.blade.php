@@ -19,14 +19,7 @@
             @csrf
             <div class="row">
               <div class="col-lg-6 col-md-7 col-sm-6">
-                <div class="form-group">
-                  <select class="form-control input-lg" id="slider_select_dep" name="select_dep">
-                    <option>Select User Type</option>
-                    <option value="login 1">Admin</option>
-                    <option value="login 2">Patient/Parents</option>
-                     <option value="login 3">Workers</option>
-                  </select>
-                </div>
+
                 <div class="form-group">
                   <input type="text"  id="email" name="email" class="form-control input-lg" placeholder="User Name ( required )" required>
                     @error('email')
