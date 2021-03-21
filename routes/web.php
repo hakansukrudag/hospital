@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\GamesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,3 +28,4 @@ Route::get('/about', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/user/store', [App\Http\Controllers\UserController::class, 'store'])->name('storeUserData');
