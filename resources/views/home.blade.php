@@ -11,17 +11,24 @@
                     <div class="panel-heading">User</div>
                     <div class="panel-body">
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn brand-primary"><a href="" onclick="resetUserDataValues(event)">
+                        <button type="button" class="btn brand-primary" onclick="resetUserDataValues(event)">
                                 Add New
-                            </a></button>
+                        </button>
                         <hr>
                         <ul>
                             @foreach($users as $user)
-                                <li>Name: {{ $user->name }} --> (Del)</li>
+                                <div style="text-align: center; margin-bottom: 5px; color:red; margin-top:20px">
+                                <button type="button" class="btn btn-danger" onclick="del({{ $user->id }}, event)">Delete</button>
+                                </div>
+                                <li>Name: {{ $user->name }} </li>
                                 <li>Email: {{ $user->email }} </li>
                                 <li>Age: {{ $user->age }} </li>
                                 <li>Image Path: {{ $user->image_path }} </li>
-
+                                @if($user->admin)
+                                    <li>Type: <span class="badge badge-dark">Admin</span></li>
+                                @else
+                                    <li>Type: User</li>
+                                @endif
                                 <span>------------------------------ </span>
                             @endforeach
                         </ul>
@@ -69,7 +76,7 @@
                         <div class="form-group">
                             <label for="age" class="col-sm-2 control-label">Age</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" name="age" id="age" placeholder="Age">
+                                <input type="date" class="form-control" name="age" id="age" placeholder="Age">
                                 <small style="color:red" id="ageError"></small>
                             </div>
                         </div>
@@ -127,24 +134,24 @@
     <script>
         function resetUserDataValues() {
             event.preventDefault();
-
-            // $('#name').val('');
-            // $('#email').val();
-            // $('#age').value().empty();
-            // $('#image_path').val();
-            // $('#password').val();
+            $('#name').val('');
+            $('#email').val('');
+            $('#age').val('');
+            $('#image_path').val('');
+            $('#password').val('');
             $('#addUserModal').modal('show');
         }
 
         function resetErrorMessages() {
-            $('#nameError').html('');
-            $('#emailError').html('');
-            $('#ageError').html('');
-            $('#imagePathError').html('');
-            $('#passwordError').html('');
+            $('#nameError').empty('');
+            $('#emailError').empty('');
+            $('#ageError').empty();
+            $('#imagePathError').empty('');
+            $('#passwordError').empty('');
         }
 
         function storeUserData(event) {
+            resetErrorMessages();
             event.preventDefault();
 
             let form = $('#userForm');
@@ -194,6 +201,26 @@
 
             });
 
+        }
+
+        function del(id, event)
+        {
+            event.preventDefault();
+
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('userDelete') }}',
+                dataType: "JSON",
+                data: {id: id, _token:'{{ @csrf_token() }}'},
+                success(returnData) {
+                    window.location.reload();
+                },
+
+                error(res) {
+
+                }
+
+            });
         }
 
     </script>

@@ -34,3 +34,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 Route::post('/user/store', [App\Http\Controllers\UserController::class, 'store'])->name('storeUserData');
+Route::post('/user/delete', [App\Http\Controllers\UserController::class, 'delete'])->name('userDelete');
