@@ -47,7 +47,7 @@
               <li><a href="{{ url('/about') }}">About</a></li>
               <li><a>Clicical</a>
                 <ul>
-                  <li><a href="#">Maternity Care</a></li>
+                  <li><a href="#">Sub</a></li>
 
 
                 </ul>
@@ -82,6 +82,7 @@
 
               <li>
              @if (Auth::check())
+                      <li><a href="{{ url('/home') }}">Admin Dashboard</a></li>
                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     Logout
                 </a>

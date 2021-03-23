@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('../layouts.app')
 
 @section('content')
     <div class="container dashboardPanel">
         <div class="row text-center">
-            <h1 class="textMargin">Dashboard</h1>
+            <h1 class="textMargin">Admin Dashboard</h1>
         </div>
         <div class="row">
             <div class="col-md-4">
@@ -11,13 +11,18 @@
                     <div class="panel-heading">User</div>
                     <div class="panel-body">
                         <!-- Button trigger modal -->
-                        <a href="" onclick="resetUserDataValues(event)">
-                            Add New
-                        </a>
+                        <button type="button" class="btn brand-primary"><a href="" onclick="resetUserDataValues(event)">
+                                Add New
+                            </a></button>
                         <hr>
                         <ul>
                             @foreach($users as $user)
-                            <li>{{ $user->name }} (Del)</li>
+                                <li>Name: {{ $user->name }} --> (Del)</li>
+                                <li>Email: {{ $user->email }} </li>
+                                <li>Age: {{ $user->age }} </li>
+                                <li>Image Path: {{ $user->image_path }} </li>
+
+                                <span>------------------------------ </span>
                             @endforeach
                         </ul>
 
