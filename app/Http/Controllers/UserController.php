@@ -45,13 +45,44 @@ class UserController extends Controller
 
     public function delete(Request $request): JsonResponse
     {
-        User::find($request->id)->delete();
+        User::find($request->input('id'))->delete();
         return response()->json(['success' => true]);
     }
 
-    public function edit(Request $request): JsonResponse
+    public function show(Request $request): JsonResponse
     {
-        User::find($request->id)->edit();
+        $userData = User::find($request->input('id'));
+        return response()->json(
+            [
+                'userData' => $userData,
+                'dob' => $this->reverseBirthday($userData->age)
+            ]
+        );
+    }
+
+    public function storeChanges(Request $request): JsonResponse
+    {
+        $this->validate($request, [
+            'editName' => 'required',
+            'editEmail' => "required|unique:users,email,{$request->input('id')},id",
+            'editAge' => 'required|date|date_format:Y-m-d|before:5 years ago|after:120 years ago',
+            'edit_image_path' => 'required|max:32'
+        ]);
+
+        $editUser = User::find($request->input('id'));
+        $editUser->name = $request->input('editName');
+        $editUser->email = $request->input('editEmail');
+        $editUser->age = $this->ageCalculator($request->input('editAge'));
+        $editUser->image_path = $request->input('edit_image_path');
+        $editUser->admin = ($request->input('editIsAdmin') === 'on') ? 1 : 0;
+
+        $editUser->save();
+
         return response()->json(['success' => true]);
+    }
+
+    public function reverseBirthday(int $years ): string
+    {
+        return date('Y-m-d', strtotime($years . ' years ago'));
     }
 }

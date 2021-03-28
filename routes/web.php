@@ -35,4 +35,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/admin', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 Route::post('/user/store', [App\Http\Controllers\UserController::class, 'store'])->name('storeUserData');
 Route::post('/user/delete', [App\Http\Controllers\UserController::class, 'delete'])->name('userDelete');
-Route::post('/user/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('userEdit');
+Route::get('/user/show', [App\Http\Controllers\UserController::class, 'show'])->name('showUserData');
+Route::post('/user/store-changes', [App\Http\Controllers\UserController::class, 'storeChanges'])->name('storeChanges');
