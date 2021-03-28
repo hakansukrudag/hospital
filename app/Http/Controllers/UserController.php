@@ -48,4 +48,10 @@ class UserController extends Controller
         User::find($request->id)->delete();
         return response()->json(['success' => true]);
     }
+
+    public function edit(Request $request): JsonResponse
+    {
+        User::find($request->id)->edit();
+        return response()->json(['success' => true]);
+    }
 }

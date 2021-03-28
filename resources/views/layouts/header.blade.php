@@ -1,5 +1,6 @@
 <!--header start-->
-<div class="hlc_topheader">
+
+<!--<div class="hlc_topheader">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6 col-md-6 col-sm-12">
@@ -17,7 +18,8 @@
       </div>
 		</div>
   </div>
-</div>
+</div>-->
+
 <header id="hs_header">
   <div class="container">
     <div class="row">

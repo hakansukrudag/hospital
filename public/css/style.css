@@ -8,7 +8,7 @@ Project:	Hospital Portal
 [Table of contents]
 
 1. Body
-2. Pre loader / #preloader 
+2. Pre loader / #preloader
 3. Color picker / #style-switcher
 4. Header / #hs_header
 5. Logo / #hs_logo
@@ -16,25 +16,25 @@ Project:	Hospital Portal
 7. Responsive navigation / .hs_nav_toggle
 8. Social icon / .hs_social
 9. Slider / .hs_slider_controler
-10. Pager / .hs_pager ul 
+10. Pager / .hs_pager ul
 11. Page title / .hs_page_title
 12. Service / .hs_service
 13. Appointment / .hs_appointment_form_div
 14. Up coming events / .up_coming_events
 15. Our doctor team slider / #our_doctor_team_slider
 16. Happy patients / .happy_patients
-17. Our partners / .our_partners 
-18. How we are / .hs_how_we_are img 
-19. Health care team / #health_care_team_slider 
+17. Our partners / .our_partners
+18. How we are / .hs_how_we_are img
+19. Health care team / #health_care_team_slider
 20. Testimonial / .testimonial , #patients_testimonials_slider
 21. Related post / .releted_post
 22. Portfolio / .hs_portfolio
 23. Single profile / .hs_single_profile
-24. Post / .post_by 
+24. Post / .post_by
 25. Blog categorie / .hs_blog_categorie_pager
 26. Sidebar / .hs_sidebar
 27. Comment form / .hs_comment_form
-28. Content / .hs_contact_head_text 
+28. Content / .hs_contact_head_text
 29. Footer / #hs_footer
 30. @media css
 -------------------------------------------------------------------*/
@@ -330,7 +330,7 @@ ul.colors li p {
 	font-size: 20px;
 }
 #style-switcher .bottom a.settings i:before{
-	content: "\f1fc";	
+	content: "\f1fc";
 }
 #style-switcher .bottom a.settings:hover {
 	text-decoration: none;
@@ -683,7 +683,7 @@ ul.pattern li #style {
 .hs_social ul li a:hover i {
 	opacity: 1;
 }
-/******** slider start ************/	
+/******** slider start ************/
 .health_slider{
 	float:left;
 	width:100%;
@@ -764,7 +764,7 @@ ul.pattern li #style {
     width: 60px;
     height: 60px;
     line-height: 60px;
-	position:absolute;	
+	position:absolute;
 }
 .health_slider .owl-carousel .owl-nav button.owl-next{
 	right:15px;
@@ -776,7 +776,7 @@ ul.pattern li #style {
 	position:relative;
 	top:-6px;
 }
-/******************Slider Start*******************/	
+/******************Slider Start*******************/
 .hs_slider_controler {
 	width: 100%;
 	float: left;
@@ -799,7 +799,7 @@ ul.pattern li #style {
 	border-color: #fff;
 	margin-right: 15px;
 }
-/******************Slider End*******************/	
+/******************Slider End*******************/
 /***************other css start****************/
 .hs_margin_20 {
 	margin-bottom: 20px;
@@ -1647,7 +1647,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', end
 	padding-right:0;
 }
 .hs_portfolio ul li a:hover {
-	
+
 }
 .portfolio {
 	float: left;
@@ -1705,7 +1705,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', end
 	transition: all 0.25s ease-in-out;
 }
 .portfolio-grid.service_grid .portfolio-item img {
-	width:100%;	
+	width:100%;
 }
 .portfolio-grid .portfolio-item:hover{
 	background: #00ac7a;
@@ -2448,7 +2448,7 @@ border-color: rgba(0, 172, 122, 0.8);
 	width:39px;
 	height:39px;
 	line-height:42px;
-	
+
 }
 .hs_contact_social > .hs_profile_social > ul > li > a > i {
 	font-size: 20px;
@@ -2485,7 +2485,7 @@ border-color: rgba(0, 172, 122, 0.8);
 .hs_additional_support p {
 	margin-bottom:25px;
 }
-/******************** Contact end ***********************/	
+/******************** Contact end ***********************/
 
 /******************** one page start ***********************/
 #hc_single {
@@ -2783,7 +2783,7 @@ div[data-target] > div {
 	color: inherit;
 }
 .hs_footer_link ul li a:hover {
-	
+
 }
 /******************** footer end ***********************/
 /******************** New Section CSS Start ***********************/
@@ -3129,8 +3129,8 @@ div[data-target] > div {
 .hlt_btn{
 	display: inline-block;
     min-width: 150px;
-    height: 50px;
-    line-height: 46px;
+    height: 40px;
+    line-height: 26px;
 	border: 2px solid #0274FA;
 	background-color: #0274FA;
 	color: #ffffff;
@@ -3918,7 +3918,7 @@ div[data-target] > div {
 }
 /******************** Newsletter Section CSS Start ***********************/
 .hlt_newsletter{
-	
+
 }
 .hlt_heading_newsltr{
     float: left;
@@ -4202,7 +4202,7 @@ div[data-target] > div {
 	padding: 7px 5px;
 }
 .hs_social ul li{
-	margin-right:3px;	
+	margin-right:3px;
 }
 .hs_social ul li a {
 	width: 28px;
@@ -4224,7 +4224,7 @@ div[data-target] > div {
 }
 .hs_page_title,
 .health_slider{
-    margin-top: 77px;	 
+    margin-top: 77px;
 }
 }
 @media (max-width: 992px) {
@@ -4240,11 +4240,11 @@ div[data-target] > div {
 }
 #hs_header nav{
 	border:none;
-}	
+}
 #hc_single,
 .hs_page_title,
 .health_slider{
-    margin-top: 0px;	 
+    margin-top: 0px;
 }
 }
 @media (min-width: 768px) and (max-width: 992px) {
@@ -4396,7 +4396,7 @@ div[data-target] > div {
 .hs_social{
 	float: left;
     text-align: center;
-}	
+}
 #hs_header .hs_social ul{
 	float: none;
     display: inline-block;
@@ -4753,8 +4753,8 @@ div[data-target] > div {
 /* Landscape phones and down */
 @media (max-width: 480px) {
 .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{
-    max-width: 100% !important;	
-}	
+    max-width: 100% !important;
+}
 .carousel-caption{
 	position:relative;
 	padding-bottom:60px;

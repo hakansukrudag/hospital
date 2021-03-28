@@ -1,6 +1,7 @@
 @extends('../layouts.app')
 
 @section('content')
+    <div class="container ">
     <div class="container dashboardPanel">
         <div class="row text-center">
             <h1 class="textMargin">Admin Dashboard</h1>
@@ -17,8 +18,8 @@
                         <hr>
                         <ul>
                             @foreach($users as $user)
-                                <div style="text-align: center; margin-bottom: 5px; color:red; margin-top:20px">
-                                <button type="button" class="btn btn-danger" onclick="del({{ $user->id }}, event)">Delete</button>
+                                <div style="text-align: left; margin-bottom: 5px; color:red; margin-top:20px">
+                                <button type="button" class="btn btn-danger " onclick="del({{ $user->id }}, event)">Delete</button>
                                 </div>
                                 <li>Name: {{ $user->name }} </li>
                                 <li>Email: {{ $user->email }} </li>
@@ -29,14 +30,20 @@
                                 @else
                                     <li>Type: User</li>
                                 @endif
+                                <div style="text-align: left; margin-bottom: 5px; margin-top:20px">
+                                    <button type="button"  class="btn btn-danger hlt_btn" onclick="edit({{ $user->id }}, event)">Edit</button>
+                                </div>
                                 <span>------------------------------ </span>
+
                             @endforeach
                         </ul>
+
+
 
                     </div>
                 </div>
             </div>
-
+        </div>
             <div class="col-md-4">
                 <div class="panel panel-info">
                     <div class="panel-heading">Appointment</div>
@@ -221,7 +228,30 @@
                 }
 
             });
+
         }
+
+        function edit(id, event)
+        {
+            event.preventDefault();
+
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('userEdit') }}',
+                dataType: "JSON",
+                data: {id: id, _token:'{{ @csrf_token() }}'},
+                success(returnData) {
+                    window.location.reload();
+                },
+
+                error(res) {
+
+                }
+
+            });
+
+        }
+
 
     </script>
 @endpush

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
+    <!--Contact Section-->
     <div class="hs_page_title">
         <div class="container">
             <h3>Contact us</h3>

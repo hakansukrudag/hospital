@@ -2,8 +2,9 @@
 @section('content')
 
     <!--About Section-->
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="container ">
+        <div class="row ">
+         <div class="col-lg-12 col-md-12 col-sm-12">
             <h4 class="hs_heading">Meet Our Health Care Team</h4>
             <div class="our_doctor_team">
                 <div id="health_care_team_slider" class="owl-carousel owl-theme">
@@ -57,8 +58,10 @@
             </div>
         </div>
     </div>
+    </div>
     <!--Health Care Team end-->
 
+    <div class="container ">
     <div class="row">
         <!--Our Hospital Updates start-->
         <div class="col-lg-8 col-md-8 col-sm-8">
@@ -99,6 +102,7 @@
                 </div>
             </div>
         </div>
+
         <!--Our Hospital Updates end-->
 
         <!--Testimonials start-->
@@ -154,10 +158,12 @@
                 </ul>
             </div>
         </div>
+        </div>
         <!--Testimonials end-->
     </div>
 
     <!--Releted Post start-->
+    <div class="container ">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
             <h4 class="hs_heading">Releted Post</h4>
@@ -236,7 +242,9 @@
             </div>
         </div>
     </div>
+    </div>
     <!--Releted Post end-->
+
     <div class="hs_margin_40"></div>
     </div>
 
