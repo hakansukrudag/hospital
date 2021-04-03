@@ -1,7 +1,7 @@
 @extends('../layouts.app')
 
 @section('content')
-<div class="container dashboardPanel">
+<div class="container">
     <div class="row text-center">
         <h1 class="textMargin">Admin Dashboard</h1>
     </div>
@@ -32,7 +32,7 @@
                             <div style="text-align: left; margin-bottom: 5px; margin-top:20px">
                                 <button type="button"  class="btn btn-danger hlt_btn" onclick="resetEditUserDataValues({{ $user->id }}, event)">Edit</button>
                             </div>
-                            <span>------------------------------ </span>
+                            <hr>
 
                         @endforeach
                     </ul>
@@ -42,7 +42,7 @@
                 </div>
             </div>
         </div>
-
+        <div class="container">
         <div class="col-md-4">
             <div class="panel panel-info">
                 <div class="panel-heading">Appointment</div>
@@ -56,6 +56,7 @@
                 <div class="panel-heading">Consultant</div>
                 <div class="panel-body">Panel Content</div>
             </div>
+        </div>
         </div>
     </div>
 </div>

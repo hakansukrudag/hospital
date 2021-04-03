@@ -17,7 +17,10 @@
 {{--    <link href="{{ mix('css/app.css') }}" rel="stylesheet">--}}
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}" media="screen"/>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" media="screen"/>
-	<link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}" media="screen"/>
+
+    <script src="https://kit.fontawesome.com/451d91865c.js" crossorigin="anonymous"></script>
+
+<!-- <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}" media="screen"/>-->
 	<link rel="stylesheet" href="{{ asset('css/fonts.css') }}" media="screen"/>
 	<link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}" media="screen"/>
 	<link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}" media="screen"/>
