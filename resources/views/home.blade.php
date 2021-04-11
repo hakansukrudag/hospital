@@ -48,6 +48,25 @@
                 <div class="panel-heading">Appointment</div>
                 <div class="panel-body">
                     <button onclick="showAppointmentModalBox(event)" class="btn btn-sm btn-secondary">Add New</button>
+                    <hr>
+                    <table class="table table-condensed">
+                         <tr>
+                             <td>Date Time</td>
+                             <td>User</td>
+                             <td>Department</td>
+                             <td>Procedure</td>
+                             <td>Action</td>
+                         </tr>
+                        @foreach($appointments as $appointment)
+                            <tr>
+                                <td>{{ $appointment->date_time->format('d-m-Y H:m') }}</td>
+                                <td>{{ $appointment->user->name }}</td>
+                                <td>{{ $appointment->department->name }}</td>
+                                <td>{{ $appointment->procedure->name }}</td>
+                                <td><a href="" onclick="delAppointment(event, {{ $appointment->id }})"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                            </tr>
+                        @endforeach
+                    </table>
                 </div>
             </div>
         </div>
@@ -455,7 +474,25 @@
 
         function showAppointmentModalBox(event)
         {
-          $('#addAppointment').modal('show');
+          $('#addAppointment').modal('show')
+        }
+
+        function delAppointment(event, id)
+        {
+          $.ajax({
+              type: 'POST',
+              url: '{{ route('appointmentDelete') }}',
+              dataType: "JSON",
+              data: {id: id, _token:'{{ @csrf_token() }}'},
+              success(returnData) {
+                  window.location.reload();
+              },
+
+              error(res) {
+
+              }
+
+          });
         }
 
 
