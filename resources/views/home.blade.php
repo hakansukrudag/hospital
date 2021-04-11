@@ -46,7 +46,9 @@
         <div class="col-md-4">
             <div class="panel panel-info">
                 <div class="panel-heading">Appointment</div>
-                <div class="panel-body">Panel Content</div>
+                <div class="panel-body">
+                    <button onclick="showAppointmentModalBox(event)" class="btn btn-sm btn-secondary">Add New</button>
+                </div>
             </div>
         </div>
 
@@ -61,7 +63,7 @@
     </div>
 </div>
 
-    <!-- Add Modal -->
+    <!-- Add User Modal  -->
     <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -137,7 +139,7 @@
         </div>
     </div>
 
-    <!-- Edit Modal -->
+    <!-- Edit User Modal -->
     <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="myEditModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -200,6 +202,84 @@
             </div>
         </div>
     </div>
+
+    <!-- Add Appointment Modal -->
+    <div class="modal fade" id="addAppointment" tabindex="-1" role="dialog" aria-labelledby="myAppointmentModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myAppointmentModal">Add Appointment</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="appointmentForm" method="post" action="{{ route('storeUserData') }}">
+                    @csrf
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+                            <small style="color:red" id="nameError"></small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="age" class="col-sm-2 control-label">Age</label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" name="age" id="age" placeholder="Age">
+                            <small style="color:red" id="ageError"></small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="image_path" class="col-sm-2 control-label">Image Path</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="image_path" id="image_path"
+                                   placeholder="Image Path">
+                            <small style="color:red" id="imagePathError"></small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                            <small style="color:red" id="emailError"></small>
+                        </div>
+                    </div>
+                    {{--                        <div class="form-group">--}}
+                    {{--                            <label for="username" class="col-sm-2 control-label">Username</label>--}}
+                    {{--                            <div class="col-sm-10">--}}
+                    {{--                                <input type="text" class="form-control" id="username" placeholder="Username">--}}
+                    {{--                            </div>--}}
+                    {{--                        </div>--}}
+                    <div class="form-group">
+                        <label for="password" class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" name="password" id="password"
+                                   placeholder="Password">
+                            <small style="color:red" id="passwordError"></small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="isAdmin" id="isAdmin"> Admin?
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveUserDataBtn" onclick="storeUserData(event)">
+                    Save changes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 @endsection
 @push('js')
     <script>
@@ -371,6 +451,11 @@
 
             });
 
+        }
+
+        function showAppointmentModalBox(event)
+        {
+          $('#addAppointment').modal('show');
         }
 
 

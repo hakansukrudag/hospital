@@ -24,7 +24,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                  <input type="text" id="slider_password" name="password" class="form-control input-lg"  placeholder="Password (required)" required>
+                  <input type="password" id="slider_password" name="password" class="form-control input-lg"  placeholder="Password (required)" required>
                     @error('password')
                         <small>{{ $message }}</small>
                     @enderror
@@ -32,7 +32,7 @@
 
                 </div>
               </div>
-            </div>
+
 
             <div class="row">
               <div class="col-lg-3 col-md-4 col-sm-3">
