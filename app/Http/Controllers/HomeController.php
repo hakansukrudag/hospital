@@ -30,7 +30,6 @@ class HomeController extends Controller
     {
         $users = User::all();
         $appointments = Appointment::all();
-
         return view('home', compact('users', 'appointments'));
     }
 
