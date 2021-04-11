@@ -6,7 +6,7 @@
         <h1 class="textMargin">Admin Dashboard</h1>
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-12">
             <div class="panel panel-info">
                 <div class="panel-heading">User</div>
                 <div class="panel-body">
@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="container">
-        <div class="col-md-4">
+        <div class="col-md-12">
             <div class="panel panel-info">
                 <div class="panel-heading">Appointment</div>
                 <div class="panel-body">
@@ -72,7 +72,7 @@
         </div>
 
 
-        <div class="col-md-4">
+        <div class="col-md-12">
             <div class="panel panel-info">
                 <div class="panel-heading">Consultant</div>
                 <div class="panel-body">Panel Content</div>
