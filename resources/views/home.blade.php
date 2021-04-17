@@ -63,7 +63,7 @@
                                 <td>{{ $appointment->user->name }}</td>
                                 <td>{{ $appointment->department->name }}</td>
                                 <td>{{ $appointment->procedure->name }}</td>
-                                <td><a href="" onclick="delAppointment(event, {{ $appointment->id }})"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                <td><a href="" onclick="delAppointment({{ $appointment->id }})"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
                             </tr>
                         @endforeach
                     </table>
@@ -232,65 +232,56 @@
                 <h4 class="modal-title" id="myAppointmentModal">Add Appointment</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" id="appointmentForm" method="post" action="{{ route('storeUserData') }}">
+                <form class="form-horizontal" id="appointmentForm" method="post" action="{{ route('appointmentAdd') }}">
                     @csrf
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Name</label>
+                        <label for="appointmentUser" class="col-sm-2 control-label">Users</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="name" id="name" placeholder="Name">
-                            <small style="color:red" id="nameError"></small>
+                            <select type="text" class="form-control" name="appointmentUser" id="appointmentUser">
+                                @foreach($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                @endforeach
+                            </select>
+                            <small style="color:red" id="appointmentUserError"></small>
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <label for="age" class="col-sm-2 control-label">Age</label>
+                        <label for="appointmentDatetime" class="col-sm-2 control-label">DateTime</label>
                         <div class="col-sm-10">
-                            <input type="date" class="form-control" name="age" id="age" placeholder="Age">
-                            <small style="color:red" id="ageError"></small>
+                            <input type="datetime-local" class="form-control" name="appointmentDatetime" id="appointmentDatetime" placeholder="Appointment Date Time">
+                            <small style="color:red" id="appointmentDatetimeError"></small>
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <label for="image_path" class="col-sm-2 control-label">Image Path</label>
+                        <label for="appointmentDepartment" class="col-sm-2 control-label">Departments</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="image_path" id="image_path"
-                                   placeholder="Image Path">
-                            <small style="color:red" id="imagePathError"></small>
+                            <select type="text" class="form-control" name="appointmentDepartment" id="appointmentDepartment">
+                                @foreach($departments as $department)
+                                    <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                @endforeach
+                            </select>
+                            <small style="color:red" id="appointmentDepartmentError"></small>
                         </div>
                     </div>
+                    
                     <div class="form-group">
-                        <label for="email" class="col-sm-2 control-label">Email</label>
+                        <label for="appointmentProcedure" class="col-sm-2 control-label">Procedures</label>
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Email">
-                            <small style="color:red" id="emailError"></small>
-                        </div>
-                    </div>
-                    {{--                        <div class="form-group">--}}
-                    {{--                            <label for="username" class="col-sm-2 control-label">Username</label>--}}
-                    {{--                            <div class="col-sm-10">--}}
-                    {{--                                <input type="text" class="form-control" id="username" placeholder="Username">--}}
-                    {{--                            </div>--}}
-                    {{--                        </div>--}}
-                    <div class="form-group">
-                        <label for="password" class="col-sm-2 control-label">Password</label>
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control" name="password" id="password"
-                                   placeholder="Password">
-                            <small style="color:red" id="passwordError"></small>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="isAdmin" id="isAdmin"> Admin?
-                                </label>
-                            </div>
+                            <select type="text" class="form-control" name="appointmentProcedure" id="appointmentProcedure">
+                                @foreach($procedures as $procedure)
+                                    <option value="{{ $procedure->id }}">{{ $procedure->name }}</option>
+                                @endforeach
+                            </select>
+                            <small style="color:red" id="appointmentProcedureError"></small>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="saveUserDataBtn" onclick="storeUserData(event)">
+                <button type="button" class="btn btn-primary"  onclick="storeAppointmentData(event)">
                     Save changes
                 </button>
             </div>
@@ -300,7 +291,11 @@
 
 
 @endsection
+@push('css')
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+@endpush
 @push('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
     <script>
         function resetUserDataValues() {
             event.preventDefault();
@@ -404,15 +399,12 @@
                         $('#passwordError').html(obj.errors.password);
                     }
                 }
-
             });
-
         }
 
         function del(id, event)
         {
             event.preventDefault();
-
             $.ajax({
                 type: 'POST',
                 url: '{{ route('userDelete') }}',
@@ -425,9 +417,7 @@
                 error(res) {
 
                 }
-
             });
-
         }
 
         function saveChanges(event)
@@ -465,11 +455,8 @@
                   if (obj.errors.edit_image_path) {
                       $('#editImagePathError').html(obj.errors.edit_image_path);
                   }
-
                 }
-
             });
-
         }
 
         function showAppointmentModalBox(event)
@@ -477,25 +464,81 @@
           $('#addAppointment').modal('show')
         }
 
-        function delAppointment(event, id)
+        function delAppointment( id)
         {
-          $.ajax({
-              type: 'POST',
-              url: '{{ route('appointmentDelete') }}',
-              dataType: "JSON",
-              data: {id: id, _token:'{{ @csrf_token() }}'},
-              success(returnData) {
-                  window.location.reload();
-              },
+          event.preventDefault();
+          Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              $.ajax({
+                  type: 'POST',
+                  url: '{{ route('appointmentDelete') }}',
+                  dataType: "JSON",
+                  data: {id: id, _token:'{{ @csrf_token() }}'},
+                  success(returnData) {
+                      window.location.reload();
+                  },
+                  error(res) {
 
-              error(res) {
-
-              }
-
+                  }
+              });
+              Swal.fire(
+                'Deleted!',
+                'Your record has been deleted.',
+                'success'
+              );
+            }
           });
         }
 
+        function storeAppointmentData()
+        {
+          resetAppointmentErrors();
+          let form = $('#appointmentForm');
+          let formData = form.serialize();
+          let url = form.attr('action');
+             $.ajax({
+                type: 'POST',
+                url: url,
+                dataType: "JSON",
+                data: formData,
+                success(returnData) {
+                    window.location.reload();
+                },
+                error(res) {
+                  let obj = JSON.parse(res.responseText);
 
+                  if (obj.errors.appointmentUser) {
+                      $('#appointmentUserError').html(obj.errors.appointmentUser);
+
+                  }
+                  if (obj.errors.appointmentDatetime) {
+                      $('#appointmentDatetimeError').html(obj.errors.appointmentDatetime);
+                  }
+
+                  if (obj.errors.appointmentDepartment) {
+                      $('#appointmentDepartmentError').html(obj.errors.appointmentDepartment);
+                  }
+
+                  if (obj.errors.appointmentProcedure) {
+                      $('#appointmentProcedureError').html(obj.errors.appointmentProcedure);
+                  }
+                }
+            });
+        }
+        function resetAppointmentErrors() {
+            $('#appointmentUserError').empty('');
+            $('#appointmentDatetimeError').empty('');
+            $('#appointmentDepartmentError').empty();
+            $('#appointmentProcedureError').empty('');
+        }
     </script>
 @endpush
 
