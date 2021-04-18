@@ -13,33 +13,35 @@
                        <div class="panel-body">
                            <button onclick="resetUserDataValues(event)" class="btn btn-sm btn-secondary">Add New</button>
                            <hr>
-                           <table class="table table-condensed">
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Email</td>
-                                    <td>Age</td>
-                                    <td>Image Path</td>
-                                    <td>Is Admin?</td>
-                                    <td>Action</td>
-                                </tr>
-                               @foreach($users as $user)
-                                   <tr>
-                                       <td>{{ $user->name }}</td>
-                                       <td>{{ $user->email }}</td>
-                                       <td>{{ $user->age }}</td>
-                                       <td>{{ $user->image_path }}</td>
-                                       @if($user->admin)
-                                           <td><span class="badge badge-dark">Admin</span></td>
-                                       @else
-                                           <td>User</td>
-                                       @endif
-                                       <td>
-                                          <span><a href="" onclick="del({{ $user->id }}, event)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></span>
-                                           <span><a href="" onclick="resetEditUserDataValues({{ $user->id }}, event)"><i class="fa fa-edit" aria-hidden="true"></i></a></span>
-                                       </td>
-                                   </tr>
-                               @endforeach
-                           </table>
+                           <div class="table-responsive">
+                               <table class="table table-condensed">
+                                    <tr>
+                                        <td>Name</td>
+                                        <td>Email</td>
+                                        <td>Age</td>
+                                        <td>Image Path</td>
+                                        <td>Is Admin?</td>
+                                        <td>Action</td>
+                                    </tr>
+                                   @foreach($users as $user)
+                                       <tr>
+                                           <td>{{ $user->name }}</td>
+                                           <td>{{ $user->email }}</td>
+                                           <td>{{ $user->age }}</td>
+                                           <td>{{ $user->image_path }}</td>
+                                           @if($user->admin)
+                                               <td><span class="badge badge-dark">Admin</span></td>
+                                           @else
+                                               <td>User</td>
+                                           @endif
+                                           <td>
+                                              <span><a href="" onclick="del({{ $user->id }}, event)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></span>
+                                               <span><a href="" onclick="resetEditUserDataValues({{ $user->id }}, event)"><i class="fa fa-edit" aria-hidden="true"></i></a></span>
+                                           </td>
+                                       </tr>
+                                   @endforeach
+                               </table>
+                           </div>
                        </div>
                    </div>
         </div>
@@ -50,24 +52,26 @@
                 <div class="panel-body">
                     <button onclick="showAppointmentModalBox(event)" class="btn btn-sm btn-secondary">Add New</button>
                     <hr>
-                    <table class="table table-condensed">
-                         <tr>
-                             <td>Date Time</td>
-                             <td>User</td>
-                             <td>Department</td>
-                             <td>Procedure</td>
-                             <td>Action</td>
-                         </tr>
-                        @foreach($appointments as $appointment)
-                            <tr>
-                                <td>{{ $appointment->date_time->format('d-m-Y H:m') }}</td>
-                                <td>{{ $appointment->user->name }}</td>
-                                <td>{{ $appointment->department->name }}</td>
-                                <td>{{ $appointment->procedure->name }}</td>
-                                <td><a href="" onclick="delAppointment({{ $appointment->id }})"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                            </tr>
-                        @endforeach
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-condensed">
+                             <tr>
+                                 <td>Date Time</td>
+                                 <td>User</td>
+                                 <td>Department</td>
+                                 <td>Procedure</td>
+                                 <td>Action</td>
+                             </tr>
+                            @foreach($appointments as $appointment)
+                                <tr>
+                                    <td>{{ $appointment->date_time->format('d-m-Y H:m') }}</td>
+                                    <td>{{ $appointment->user->name }}</td>
+                                    <td>{{ $appointment->department->name }}</td>
+                                    <td>{{ $appointment->procedure->name }}</td>
+                                    <td><a href="" onclick="delAppointment({{ $appointment->id }})"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -79,18 +83,20 @@
                     <div class="panel-body">
                         <button onclick="resetConsultantValues()" class="btn btn-sm btn-secondary">Add New</button>
                         <hr>
-                        <table class="table table-condensed">
-                             <tr>
-                                 <td>Name</td>
-                                 <td>Action</td>
-                             </tr>
-                            @foreach($consultants as $consultant)
-                                <tr>
-                                    <td>{{ $consultant->name }}</td>
-                                    <td><a href="" onclick="delConsultant({{ $consultant->id }}, event)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                                </tr>
-                            @endforeach
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table table-condensed">
+                                 <tr>
+                                     <td>Name</td>
+                                     <td>Action</td>
+                                 </tr>
+                                @foreach($consultants as $consultant)
+                                    <tr>
+                                        <td>{{ $consultant->name }}</td>
+                                        <td><a href="" onclick="delConsultant({{ $consultant->id }}, event)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                        </div>
                     </div>
                 </div>
         </div>
