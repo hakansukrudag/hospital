@@ -34,8 +34,9 @@ class HomeController extends Controller
         $appointments = Appointment::all();
         $departments = Department::all();
         $procedures = Procedure::all();
-        $users = User::where('admin', false)->get();
-        return view('home', compact('users', 'appointments', 'departments', 'procedures', 'users'));
+        $consultants = Consultant::all();
+        $usersAppointment = User::where('admin', false)->get();
+        return view('home', compact('users', 'appointments', 'departments', 'procedures', 'usersAppointment', 'consultants'));
     }
 
     public function appointmentDelete(Request $request)
@@ -60,6 +61,27 @@ class HomeController extends Controller
         $newAppointmentRecord->fk_department_id = $request->input('appointmentDepartment');
         $newAppointmentRecord->fk_procedure_id = $request->input('appointmentProcedure');
         $newAppointmentRecord->save();
+        return response()->json(['success' => true]);
+    }
+
+    public function consultantDelete(Request $request)
+    {
+        $id = $request->input('id');
+
+        Consultant::find($id)->delete();
+        return response()->json(['success' => true]);
+    }
+    
+    public function consultantAdd(Request $request)
+    {
+        $this->validate($request, [
+            'consultantName' => 'required|max:255',
+        ]);
+
+        $newConsultantRecord = new Consultant();
+        $newConsultantRecord->name = $request->input('consultantName');
+        $newConsultantRecord->save();
+
         return response()->json(['success' => true]);
     }
 }

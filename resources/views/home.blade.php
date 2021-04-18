@@ -7,40 +7,41 @@
     </div>
     <div class="row">
         <div class="col-md-12">
+            
             <div class="panel panel-info">
-                <div class="panel-heading">User</div>
-                <div class="panel-body">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn brand-primary" onclick="resetUserDataValues(event)">
-                            Add New
-                    </button>
-                    <hr>
-                    <ul>
-                        @foreach($users as $user)
-                            <div style="text-align: left; margin-bottom: 5px; color:red; margin-top:20px">
-                            <button type="button" class="btn btn-danger " onclick="del({{ $user->id }}, event)">Delete</button>
-                            </div>
-                            <li>Name: {{ $user->name }} </li>
-                            <li>Email: {{ $user->email }} </li>
-                            <li>Age: {{ $user->age }} </li>
-                            <li>Image Path: {{ $user->image_path }} </li>
-                            @if($user->admin)
-                                <li>Type: <span class="badge badge-dark">Admin</span></li>
-                            @else
-                                <li>Type: User</li>
-                            @endif
-                            <div style="text-align: left; margin-bottom: 5px; margin-top:20px">
-                                <button type="button"  class="btn btn-danger hlt_btn" onclick="resetEditUserDataValues({{ $user->id }}, event)">Edit</button>
-                            </div>
-                            <hr>
-
-                        @endforeach
-                    </ul>
-
-
-
-                </div>
-            </div>
+                       <div class="panel-heading">User</div>
+                       <div class="panel-body">
+                           <button onclick="resetUserDataValues(event)" class="btn btn-sm btn-secondary">Add New</button>
+                           <hr>
+                           <table class="table table-condensed">
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Email</td>
+                                    <td>Age</td>
+                                    <td>Image Path</td>
+                                    <td>Is Admin?</td>
+                                    <td>Action</td>
+                                </tr>
+                               @foreach($users as $user)
+                                   <tr>
+                                       <td>{{ $user->name }}</td>
+                                       <td>{{ $user->email }}</td>
+                                       <td>{{ $user->age }}</td>
+                                       <td>{{ $user->image_path }}</td>
+                                       @if($user->admin)
+                                           <td><span class="badge badge-dark">Admin</span></td>
+                                       @else
+                                           <td>User</td>
+                                       @endif
+                                       <td>
+                                          <span><a href="" onclick="del({{ $user->id }}, event)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></span>
+                                           <span><a href="" onclick="resetEditUserDataValues({{ $user->id }}, event)"><i class="fa fa-edit" aria-hidden="true"></i></a></span>
+                                       </td>
+                                   </tr>
+                               @endforeach
+                           </table>
+                       </div>
+                   </div>
         </div>
         <div class="container">
         <div class="col-md-12">
@@ -74,9 +75,24 @@
 
         <div class="col-md-12">
             <div class="panel panel-info">
-                <div class="panel-heading">Consultant</div>
-                <div class="panel-body">Panel Content</div>
-            </div>
+                    <div class="panel-heading">Consultant</div>
+                    <div class="panel-body">
+                        <button onclick="resetConsultantValues()" class="btn btn-sm btn-secondary">Add New</button>
+                        <hr>
+                        <table class="table table-condensed">
+                             <tr>
+                                 <td>Name</td>
+                                 <td>Action</td>
+                             </tr>
+                            @foreach($consultants as $consultant)
+                                <tr>
+                                    <td>{{ $consultant->name }}</td>
+                                    <td><a href="" onclick="delConsultant({{ $consultant->id }}, event)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div>
+                </div>
         </div>
         </div>
     </div>
@@ -238,7 +254,7 @@
                         <label for="appointmentUser" class="col-sm-2 control-label">Users</label>
                         <div class="col-sm-10">
                             <select type="text" class="form-control" name="appointmentUser" id="appointmentUser">
-                                @foreach($users as $user)
+                                @foreach($usersAppointment as $user)
                                     <option value="{{ $user->id }}">{{ $user->name }}</option>
                                 @endforeach
                             </select>
@@ -289,6 +305,37 @@
     </div>
 </div>
 
+<!-- Add Consultant Modal -->
+<div class="modal fade" id="addConsultantModal" tabindex="-1" role="dialog" aria-labelledby="myAddConsultantModalLabel">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myAddConsultantModalLabel">Add Consultant</h4>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" id="consultantForm" method="post" action="{{ route('consultantAdd') }}">
+                @csrf
+
+                <div class="form-group">
+                    <label for="consultantName" class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="consultantName" id="consultantName" placeholder="Consultant Name">
+                        <small style="color:red" id="consultantNameError"></small>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary"  onclick="storeConsultantData(event)">
+                Save changes
+            </button>
+        </div>
+    </div>
+</div>
+</div>
 
 @endsection
 @push('css')
@@ -404,20 +451,37 @@
 
         function del(id, event)
         {
-            event.preventDefault();
-            $.ajax({
-                type: 'POST',
-                url: '{{ route('userDelete') }}',
-                dataType: "JSON",
-                data: {id: id, _token:'{{ @csrf_token() }}'},
-                success(returnData) {
-                    window.location.reload();
-                },
+          event.preventDefault();
+          Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              $.ajax({
+                  type: 'POST',
+                  url: '{{ route('userDelete') }}',
+                  dataType: "JSON",
+                  data: {id: id, _token:'{{ @csrf_token() }}'},
+                  success(returnData) {
+                      window.location.reload();
+                  },
 
-                error(res) {
+                  error(res) {
 
-                }
-            });
+                  }
+              });
+              Swal.fire(
+                'Deleted!',
+                'Your record has been deleted.',
+                'success'
+              );
+            }
+          });
         }
 
         function saveChanges(event)
@@ -538,6 +602,76 @@
             $('#appointmentDatetimeError').empty('');
             $('#appointmentDepartmentError').empty();
             $('#appointmentProcedureError').empty('');
+        }
+
+        function resetConsultantErrors() {
+            $('#consultantNameError').empty('');
+        }
+
+        function delConsultant(id, event)
+        {
+          event.preventDefault();
+          Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              $.ajax({
+                  type: 'POST',
+                  url: '{{ route('consultantDelete') }}',
+                  dataType: "JSON",
+                  data: {id: id, _token:'{{ @csrf_token() }}'},
+                  success(returnData) {
+                      window.location.reload();
+                  },
+
+                  error(res) {
+
+                  }
+              });
+              Swal.fire(
+                'Deleted!',
+                'Your record has been deleted.',
+                'success'
+              );
+            }
+          });
+        }
+
+        function storeConsultantData()
+        {
+          resetConsultantErrors();
+          let form = $('#consultantForm');
+          let formData = form.serialize();
+          let url = form.attr('action');
+             $.ajax({
+                type: 'POST',
+                url: url,
+                dataType: "JSON",
+                data: formData,
+                success(returnData) {
+                    window.location.reload();
+                },
+                error(res) {
+                  let obj = JSON.parse(res.responseText);
+
+                  if (obj.errors.consultantName) {
+                      $('#consultantNameError').html(obj.errors.consultantName);
+
+                  }
+                }
+            });
+        }
+
+        function resetConsultantValues() {
+            event.preventDefault();
+            $('#consultantName').val('');
+            $('#addConsultantModal').modal('show');
         }
     </script>
 @endpush
