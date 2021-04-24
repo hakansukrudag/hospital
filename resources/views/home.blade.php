@@ -45,7 +45,7 @@
                        </div>
                    </div>
         </div>
-        <div class="container">
+
         <div class="col-md-12">
             <div class="panel panel-info">
                 <div class="panel-heading">Appointment</div>
@@ -63,11 +63,14 @@
                              </tr>
                             @foreach($appointments as $appointment)
                                 <tr>
-                                    <td>{{ $appointment->date_time->format('d-m-Y H:m') }}</td>
+                                    <td>{{ $appointment->date_time->format('d-m-Y H:i:s') }}</td>
                                     <td>{{ $appointment->user->name }}</td>
                                     <td>{{ $appointment->department->name }}</td>
                                     <td>{{ $appointment->procedure->name }}</td>
-                                    <td><a href="" onclick="delAppointment({{ $appointment->id }})"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                    <td>
+                                        <span><a href="" onclick="delAppointment({{ $appointment->id }})"><i class="fa fa-trash-o" aria-hidden="true"></i></a></span>
+                                        <span><a href="" onclick="resetEditAppointmentDataValues({{ $appointment->id }}, event)"><i class="fa fa-edit" aria-hidden="true"></i></a></span>
+                                    </td>
                                 </tr>
                             @endforeach
                         </table>
@@ -128,7 +131,6 @@
             </div>
 
         </div>
-    </div>
 </div>
 
     <!-- Add User Modal  -->
@@ -338,76 +340,144 @@
     </div>
 </div>
 
-<!-- Add Consultant Modal -->
-<div class="modal fade" id="addConsultantModal" tabindex="-1" role="dialog" aria-labelledby="myAddConsultantModalLabel">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                    aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myAddConsultantModalLabel">Add Consultant</h4>
-        </div>
-        <div class="modal-body">
-            <form class="form-horizontal" id="consultantForm" method="post" action="{{ route('consultantAdd') }}">
-                @csrf
-
-                <div class="form-group">
-                    <label for="consultantName" class="col-sm-2 control-label">Name</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="consultantName" id="consultantName" placeholder="Consultant Name">
-                        <small style="color:red" id="consultantNameError"></small>
-                    </div>
+    <!-- Edit Appointment Modal -->
+    <div class="modal fade" id="editAppointmentModal" tabindex="-1" role="dialog" aria-labelledby="myAppointmentEditModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myAppointmentEditModalLabel">Edit Appointment</h4>
                 </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary"  onclick="storeConsultantData(event)">
-                Save changes
-            </button>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="editAppointmentForm" method="post" action="{{ route('storeAppointmentChanges') }}">
+                        @csrf
+                        <input type="hidden" id="appointmentEditId" name="appointmentEditId">
+                        <div class="form-group">
+                            <label for="appointmentEditUser" class="col-sm-2 control-label">Users</label>
+                            <div class="col-sm-10">
+                                <select type="text" class="form-control" name="appointmentEditUser" id="appointmentEditUser">
+                                    @foreach($usersAppointment as $user)
+                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    @endforeach
+                                </select>
+                                <small style="color:red" id="appointmentEditUserError"></small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointmentEditDatetime" class="col-sm-2 control-label">DateTime</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="appointmentEditDatetime" id="appointmentEditDatetime" placeholder="Appointment Date Time">
+                                <small style="color:red" id="appointmentEditDatetimeError"></small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="appointmentEditDepartment" class="col-sm-2 control-label">Departments</label>
+                            <div class="col-sm-10">
+                                <select type="text" class="form-control" name="appointmentEditDepartment" id="appointmentEditDepartment">
+                                    @foreach($departments as $department)
+                                        <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                    @endforeach
+                                </select>
+                                <small style="color:red" id="appointmentEditDepartmentError"></small>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="appointmentEditProcedure" class="col-sm-2 control-label">Procedures</label>
+                            <div class="col-sm-10">
+                                <select type="text" class="form-control" name="appointmentEditProcedure" id="appointmentEditProcedure">
+                                    @foreach($procedures as $procedure)
+                                        <option value="{{ $procedure->id }}">{{ $procedure->name }}</option>
+                                    @endforeach
+                                </select>
+                                <small style="color:red" id="appointmentEditProcedureError"></small>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="editUserDataBtn" onclick="saveAppointmentEditChanges(event)">
+                        Save changes
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
 
-<!-- Add Medicine Modal -->
-<div class="modal fade" id="addMedicineModal" tabindex="-1" role="dialog" aria-labelledby="myAddMedicineModalLabel">
+
+    <!-- Add Consultant Modal -->
+    <div class="modal fade" id="addConsultantModal" tabindex="-1" role="dialog" aria-labelledby="myAddConsultantModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myAddMedicineModalLabel">Add Medicine</h4>
+                <h4 class="modal-title" id="myAddConsultantModalLabel">Add Consultant</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" id="medicineForm" method="post" action="{{ route('medicineAdd') }}">
+                <form class="form-horizontal" id="consultantForm" method="post" action="{{ route('consultantAdd') }}">
                     @csrf
 
                     <div class="form-group">
-                        <label for="medicineName" class="col-sm-2 control-label">Name</label>
+                        <label for="consultantName" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="medicineName" id="medicineName" placeholder="Medicine Name">
-                            <small style="color:red" id="medicineNameError"></small>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="medicineDose" class="col-sm-2 control-label">Dose</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="medicineDose" id="medicineDose" placeholder="Medicine Dose">
-                            <small style="color:red" id="medicineDoseError"></small>
+                            <input type="text" class="form-control" name="consultantName" id="consultantName" placeholder="Consultant Name">
+                            <small style="color:red" id="consultantNameError"></small>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary"  onclick="storeMedicineData(event)">
+                <button type="button" class="btn btn-primary"  onclick="storeConsultantData(event)">
                     Save changes
                 </button>
             </div>
         </div>
     </div>
-</div>
+    </div>
+
+    <!-- Add Medicine Modal -->
+    <div class="modal fade" id="addMedicineModal" tabindex="-1" role="dialog" aria-labelledby="myAddMedicineModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myAddMedicineModalLabel">Add Medicine</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="medicineForm" method="post" action="{{ route('medicineAdd') }}">
+                        @csrf
+
+                        <div class="form-group">
+                            <label for="medicineName" class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="medicineName" id="medicineName" placeholder="Medicine Name">
+                                <small style="color:red" id="medicineNameError"></small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="medicineDose" class="col-sm-2 control-label">Dose</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="medicineDose" id="medicineDose" placeholder="Medicine Dose">
+                                <small style="color:red" id="medicineDoseError"></small>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary"  onclick="storeMedicineData(event)">
+                        Save changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 @push('css')
@@ -676,6 +746,13 @@
             $('#appointmentProcedureError').empty('');
         }
 
+        function resetAppointmentEditErrors() {
+            $('#appointmentEditUserError').empty('');
+            $('#appointmentEditDatetimeError').empty('');
+            $('#appointmentEditDepartmentError').empty();
+            $('#appointmentEditProcedureError').empty('');
+        }
+
         function resetConsultantErrors() {
             $('#consultantNameError').empty('');
         }
@@ -804,14 +881,16 @@
                 success(returnData) {
                     window.location.reload();
                 },
-                error(res) {
-                    let obj = JSON.parse(res.responseText);
+                error(res)
+                {
+                  let obj = JSON.parse(res.responseText);
 
-                    if (obj.errors.medicineName) {
-                        $('#medicineNameError').html(obj.errors.medicineName);
+                  if (obj.errors.medicineName) {
+                    $('#medicineNameError').html(obj.errors.medicineName);
                     if (obj.errors.medicineDose) {
-                        $('#medicineDoseError').html(obj.errors.medicineDose);
+                      $('#medicineDoseError').html(obj.errors.medicineDose);
                     }
+                  }
                 }
             });
         }
@@ -821,6 +900,66 @@
             $('#medicineName').val('');
             $('#medicineDose').val('');
             $('#addMedicineModal').modal('show');
+        }
+
+        function saveAppointmentEditChanges(event)
+        {
+          resetAppointmentEditErrors();
+          let form = $('#editAppointmentForm');
+          let formData = form.serialize();
+          let url = form.attr('action');
+             $.ajax({
+                type: 'POST',
+                url: url,
+                dataType: "JSON",
+                data: formData,
+                success(returnData) {
+                    window.location.reload();
+                },
+                error(res) {
+                  let obj = JSON.parse(res.responseText);
+
+                  if (obj.errors.appointmentEditUser) {
+                      $('#appointmentEditUserError').html(obj.errors.appointmentEditUser);
+                  }
+                  if (obj.errors.appointmentEditDatetime) {
+                      $('#appointmentEditDatetimeError').html(obj.errors.appointmentEditDatetime);
+                  }
+                  if (obj.errors.appointmentEditDepartment) {
+                      $('#appointmentEditDepartmentError').html(obj.errors.appointmentEditDepartment);
+                  }
+                  if (obj.errors.appointmentEditProcedure) {
+                      $('#appointmentEditProcedureError').html(obj.errors.appointmentEditProcedure);
+                  }
+                }
+            });
+        }
+
+        function resetEditAppointmentDataValues(id, event) {
+            event.preventDefault();
+            $('#appointmentEditUser').val('');
+            $('#appointmentEditDatetime').val('');
+            $('#appointmentEditDepartment').val('');
+            $('#appointmentEditProcedure').val('');
+
+
+            $.ajax({
+              type: 'GET',
+              url: '{{ route('appointmentShow') }}',
+              dataType: "JSON",
+              data: {id: id},
+              success(returnData) {
+                $('#appointmentEditUser').val(returnData.appointment.fk_user_id);
+                $('#appointmentEditId').val(returnData.appointment.id);
+                $('#appointmentEditDatetime').val(returnData.datetime);
+                $('#appointmentEditDepartment').val(returnData.appointment.fk_department_id);
+                $('#appointmentEditProcedure').val(returnData.appointment.fk_procedure_id);
+                $('#editAppointmentModal').modal('show');
+              },
+              error(res) {
+                alert('Something went wrong!')
+              }
+            });
         }
     </script>
 @endpush

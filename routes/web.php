@@ -38,6 +38,9 @@ Route::get('/user/show', [App\Http\Controllers\UserController::class, 'show'])->
 Route::post('/user/edit-changes', [App\Http\Controllers\UserController::class, 'storeChanges'])->name('storeChanges');
 Route::post('/appointment/delete', [App\Http\Controllers\HomeController::class, 'appointmentDelete'])->name('appointmentDelete');
 Route::post('/appointment/add', [App\Http\Controllers\HomeController::class, 'appointmentAdd'])->name('appointmentAdd');
+Route::get('/appointment/show', [App\Http\Controllers\HomeController::class, 'appointmentShow'])->name('appointmentShow');
+Route::post('/appointment/store', [App\Http\Controllers\HomeController::class, 'storeAppointmentChanges'])->name('storeAppointmentChanges');
+
 Route::post('/consultant/delete', [App\Http\Controllers\HomeController::class, 'consultantDelete'])->name('consultantDelete');
 Route::post('/consultant/add', [App\Http\Controllers\HomeController::class, 'consultantAdd'])->name('consultantAdd');
 Route::post('/medicine/delete', [App\Http\Controllers\HomeController::class, 'medicineDelete'])->name('medicineDelete');

@@ -9,6 +9,7 @@ use App\Models\Procedure;
 use App\Models\Medicine;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -108,6 +109,36 @@ class HomeController extends Controller
         $newMedicineRecord->save();
 
         return response()->json(['success' => true]);
+    }
+
+    public function storeAppointmentChanges(Request $request)
+    {
+        $id = $request->input('appointmentEditId');
+        $this->validate($request, [
+            'appointmentEditUser' => 'required',
+            'appointmentEditDatetime' => 'required',
+            'appointmentEditDepartment' => 'required',
+            'appointmentEditProcedure' => 'required',
+        ]);
+
+        $appointment =  Appointment::find($id);
+        $appointment->fk_user_id = $request->input('appointmentEditUser');
+        $appointment->date_time = Carbon::createFromFormat('d/m/Y H:i:s', $request->input('appointmentEditDatetime'))->format('Y-m-d H:i:s');
+        $appointment->fk_department_id = $request->input('appointmentEditDepartment');
+        $appointment->fk_procedure_id = $request->input('appointmentEditProcedure');
+        $appointment->save();
+        return response()->json(['success => true']);
+    }
+
+    public function appointmentShow(Request $request)
+    {
+        $appointment = Appointment::find($request->input('id'));
+        return response()->json(
+            [
+                'appointment' => $appointment,
+                'datetime' => $appointment->date_time->format('d/m/Y H:i:s')
+            ]
+        );
     }
 
 
