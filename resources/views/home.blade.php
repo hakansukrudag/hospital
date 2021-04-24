@@ -105,18 +105,20 @@
                 <div class="panel panel-info">
                     <div class="panel-heading">Medicine</div>
                     <div class="panel-body">
-                        <button onclick="resetConsultantValues()" class="btn btn-sm btn-secondary">Add New</button>
+                        <button onclick="resetMedicineValues()" class="btn btn-sm btn-secondary">Add New</button>
                         <hr>
                         <div class="table-responsive">
                             <table class="table table-condensed">
                                 <tr>
                                     <td>Name</td>
+                                    <td>Dose</td>
                                     <td>Action</td>
                                 </tr>
                                 @foreach($medicines as $medicine)
                                     <tr>
                                         <td>{{ $medicine->name }}</td>
-                                        <td><a href="" onclick="delConsultant({{ $medicine->id }}, event)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                        <td>{{ $medicine->dose }}</td>
+                                        <td><a href="" onclick="delMedicine({{ $medicine->id }}, event)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
                                     </tr>
                                 @endforeach
                             </table>
@@ -386,6 +388,13 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="medicineName" id="medicineName" placeholder="Medicine Name">
                             <small style="color:red" id="medicineNameError"></small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="medicineDose" class="col-sm-2 control-label">Dose</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="medicineDose" id="medicineDose" placeholder="Medicine Dose">
+                            <small style="color:red" id="medicineDoseError"></small>
                         </div>
                     </div>
                 </form>
@@ -743,6 +752,7 @@
 
             function resetMedicineErrors() {
                 $('#medicineNameError').empty('');
+                $('#medicineDoseError').empty('');
             }
 
         function delMedicine(id, event)
@@ -799,7 +809,8 @@
 
                     if (obj.errors.medicineName) {
                         $('#medicineNameError').html(obj.errors.medicineName);
-
+                    if (obj.errors.medicineDose) {
+                        $('#medicineDoseError').html(obj.errors.medicineDose);
                     }
                 }
             });
@@ -808,9 +819,9 @@
         function resetMedicineValues() {
             event.preventDefault();
             $('#medicineName').val('');
+            $('#medicineDose').val('');
             $('#addMedicineModal').modal('show');
         }
-
     </script>
 @endpush
 

@@ -38,7 +38,7 @@ class HomeController extends Controller
         $consultants = Consultant::all();
         $medicines = Medicine::all();
         $usersAppointment = User::where('admin', false)->get();
-        return view('home', compact('users', 'appointments', 'departments', 'procedures', 'usersAppointment', 'consultants','medicines'));
+        return view('home', compact('users', 'appointments', 'departments', 'procedures', 'usersAppointment', 'consultants', 'medicines'));
     }
 
     public function appointmentDelete(Request $request)
@@ -91,7 +91,7 @@ class HomeController extends Controller
     {
         $id = $request->input('id');
 
-        Consultant::find($id)->delete();
+        Medicine::find($id)->delete();
         return response()->json(['success' => true]);
     }
 
@@ -99,10 +99,12 @@ class HomeController extends Controller
     {
         $this->validate($request, [
             'medicineName' => 'required|max:255',
+            'medicineDose' => 'required|max:255',
         ]);
 
         $newMedicineRecord = new Medicine();
         $newMedicineRecord->name = $request->input('medicineName');
+        $newMedicineRecord->dose = $request->input('medicineDose');
         $newMedicineRecord->save();
 
         return response()->json(['success' => true]);
