@@ -375,7 +375,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myAddMedicineModalLabel">Add Consultant</h4>
+                <h4 class="modal-title" id="myAddMedicineModalLabel">Add Medicine</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" id="medicineForm" method="post" action="{{ route('medicineAdd') }}">
@@ -706,10 +706,10 @@
           });
         }
 
-        function storeConsultantData()
+        function storeMedicineData()
         {
-          resetConsultantErrors();
-          let form = $('#consultantForm');
+          resetMedicineErrors();
+          let form = $('#medicineForm');
           let formData = form.serialize();
           let url = form.attr('action');
              $.ajax({
@@ -724,18 +724,89 @@
                   let obj = JSON.parse(res.responseText);
 
                   if (obj.errors.consultantName) {
-                      $('#consultantNameError').html(obj.errors.consultantName);
+                      $('#medicineNameError').html(obj.errors.medicineName);
 
                   }
                 }
             });
         }
 
-        function resetConsultantValues() {
+        function resetMedicineValues() {
             event.preventDefault();
-            $('#consultantName').val('');
-            $('#addConsultantModal').modal('show');
+            $('#medicineName').val('');
+            $('#addMedicineModal').modal('show');
         }
+
+        function resetMedicineErrors() {
+            $('#medicineNameError').empty('');
+        }
+
+        function delMedicine(id, event)
+        {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{ route('consultantDelete') }}',
+                        dataType: "JSON",
+                        data: {id: id, _token:'{{ @csrf_token() }}'},
+                        success(returnData) {
+                            window.location.reload();
+                        },
+
+                        error(res) {
+
+                        }
+                    });
+                    Swal.fire(
+                        'Deleted!',
+                        'Your record has been deleted.',
+                        'success'
+                    );
+                }
+            });
+        }
+
+        function storeMedicineData()
+        {
+            resetMedicineErrors();
+            let form = $('#medicineForm');
+            let formData = form.serialize();
+            let url = form.attr('action');
+            $.ajax({
+                type: 'POST',
+                url: url,
+                dataType: "JSON",
+                data: formData,
+                success(returnData) {
+                    window.location.reload();
+                },
+                error(res) {
+                    let obj = JSON.parse(res.responseText);
+
+                    if (obj.errors.medicineName) {
+                        $('#medicineNameError').html(obj.errors.medicineName);
+
+                    }
+                }
+            });
+        }
+
+        function resetMedicineValues() {
+            event.preventDefault();
+            $('#medicineName').val('');
+            $('#addMedicineModal').modal('show');
+        }
+
     </script>
 @endpush
 

@@ -6,6 +6,7 @@ use App\Models\Appointment;
 use App\Models\Consultant;
 use App\Models\Department;
 use App\Models\Procedure;
+use App\Models\Medicine;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -35,8 +36,9 @@ class HomeController extends Controller
         $departments = Department::all();
         $procedures = Procedure::all();
         $consultants = Consultant::all();
+        $medicines = Medicine::all();
         $usersAppointment = User::where('admin', false)->get();
-        return view('home', compact('users', 'appointments', 'departments', 'procedures', 'usersAppointment', 'consultants'));
+        return view('home', compact('users', 'appointments', 'departments', 'procedures', 'usersAppointment', 'consultants','medicines'));
     }
 
     public function appointmentDelete(Request $request)
@@ -71,7 +73,7 @@ class HomeController extends Controller
         Consultant::find($id)->delete();
         return response()->json(['success' => true]);
     }
-    
+
     public function consultantAdd(Request $request)
     {
         $this->validate($request, [
@@ -84,4 +86,27 @@ class HomeController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    public function medicineDelete(Request $request)
+    {
+        $id = $request->input('id');
+
+        Consultant::find($id)->delete();
+        return response()->json(['success' => true]);
+    }
+
+    public function medicineAdd(Request $request)
+    {
+        $this->validate($request, [
+            'medicineName' => 'required|max:255',
+        ]);
+
+        $newMedicineRecord = new Medicine();
+        $newMedicineRecord->name = $request->input('medicineName');
+        $newMedicineRecord->save();
+
+        return response()->json(['success' => true]);
+    }
+
+
 }
