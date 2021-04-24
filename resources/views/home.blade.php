@@ -706,10 +706,10 @@
           });
         }
 
-        function storeMedicineData()
+        function storeConsultantData()
         {
-          resetMedicineErrors();
-          let form = $('#medicineForm');
+          resetConsultantErrors();
+          let form = $('#consultantForm');
           let formData = form.serialize();
           let url = form.attr('action');
              $.ajax({
@@ -724,22 +724,26 @@
                   let obj = JSON.parse(res.responseText);
 
                   if (obj.errors.consultantName) {
-                      $('#medicineNameError').html(obj.errors.medicineName);
+                      $('#consultantNameError').html(obj.errors.consultantName);
 
                   }
                 }
             });
         }
 
-        function resetMedicineValues() {
+        function resetConsultantValues() {
             event.preventDefault();
-            $('#medicineName').val('');
-            $('#addMedicineModal').modal('show');
+            $('#consultantName').val('');
+            $('#addConsultantModal').modal('show');
         }
 
-        function resetMedicineErrors() {
-            $('#medicineNameError').empty('');
-        }
+
+
+        <!-- Medicine -->
+
+            function resetMedicineErrors() {
+                $('#medicineNameError').empty('');
+            }
 
         function delMedicine(id, event)
         {
@@ -756,7 +760,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: 'POST',
-                        url: '{{ route('consultantDelete') }}',
+                        url: '{{ route('medicineDelete') }}',
                         dataType: "JSON",
                         data: {id: id, _token:'{{ @csrf_token() }}'},
                         success(returnData) {
