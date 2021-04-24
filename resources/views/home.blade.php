@@ -7,7 +7,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            
+
             <div class="panel panel-info">
                        <div class="panel-heading">User</div>
                        <div class="panel-body">
@@ -100,6 +100,31 @@
                     </div>
                 </div>
         </div>
+
+            <div class="col-md-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">Medicine</div>
+                    <div class="panel-body">
+                        <button onclick="resetConsultantValues()" class="btn btn-sm btn-secondary">Add New</button>
+                        <hr>
+                        <div class="table-responsive">
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Action</td>
+                                </tr>
+                                @foreach($medicines as $medicine)
+                                    <tr>
+                                        <td>{{ $medicine->name }}</td>
+                                        <td><a href="" onclick="delConsultant({{ $medicine->id }}, event)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                    </tr>
+                                @endforeach
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -287,7 +312,7 @@
                             <small style="color:red" id="appointmentDepartmentError"></small>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="appointmentProcedure" class="col-sm-2 control-label">Procedures</label>
                         <div class="col-sm-10">
@@ -341,6 +366,38 @@
         </div>
     </div>
 </div>
+</div>
+
+<!-- Add Medicine Modal -->
+<div class="modal fade" id="addMedicineModal" tabindex="-1" role="dialog" aria-labelledby="myAddMedicineModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myAddMedicineModalLabel">Add Consultant</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="medicineForm" method="post" action="{{ route('medicineAdd') }}">
+                    @csrf
+
+                    <div class="form-group">
+                        <label for="medicineName" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="medicineName" id="medicineName" placeholder="Medicine Name">
+                            <small style="color:red" id="medicineNameError"></small>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary"  onclick="storeMedicineData(event)">
+                    Save changes
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 
 @endsection

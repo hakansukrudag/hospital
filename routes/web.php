@@ -40,3 +40,5 @@ Route::post('/appointment/delete', [App\Http\Controllers\HomeController::class, 
 Route::post('/appointment/add', [App\Http\Controllers\HomeController::class, 'appointmentAdd'])->name('appointmentAdd');
 Route::post('/consultant/delete', [App\Http\Controllers\HomeController::class, 'consultantDelete'])->name('consultantDelete');
 Route::post('/consultant/add', [App\Http\Controllers\HomeController::class, 'consultantAdd'])->name('consultantAdd');
+Route::post('/medicine/delete', [App\Http\Controllers\HomeController::class, 'medicineDelete'])->name('medicineDelete');
+Route::post('/medicine/add', [App\Http\Controllers\HomeController::class, 'medicineAdd'])->name('medicineAdd');
