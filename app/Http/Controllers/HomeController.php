@@ -141,5 +141,27 @@ class HomeController extends Controller
         );
     }
 
+    public function storeConsultantChanges(Request $request)
+    {
+        $id = $request->input('consultantEditId');
+        $this->validate($request, [
+            'consultantEditName' => 'required',
+        ]);
 
+        $consultant = Consultant::find($id);
+        $consultant->name = $request->input('consultantEditName');
+
+        $consultant->save();
+        return response()->json(['success => true']);
+    }
+
+    public function consultantShow(Request $request)
+    {
+        $consultant = Consultant::find($request->input('id'));
+        return response()->json(
+            [
+                'consultant' => $consultant,
+            ]
+        );
+    }
 }

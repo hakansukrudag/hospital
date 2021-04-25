@@ -46,6 +46,7 @@
                    </div>
         </div>
 
+        <!-- Appointment Panel -->
         <div class="col-md-12">
             <div class="panel panel-info">
                 <div class="panel-heading">Appointment</div>
@@ -78,8 +79,8 @@
                 </div>
             </div>
         </div>
-
-
+        
+        <!-- Consultant Panel -->
         <div class="col-md-12">
             <div class="panel panel-info">
                     <div class="panel-heading">Consultant</div>
@@ -95,7 +96,10 @@
                                 @foreach($consultants as $consultant)
                                     <tr>
                                         <td>{{ $consultant->name }}</td>
-                                        <td><a href="" onclick="delConsultant({{ $consultant->id }}, event)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                        <td>
+                                            <span><a href="" onclick="delConsultant({{ $consultant->id }}, event)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></span>
+                                            <span><a href="" onclick="resetEditConsultantDataValues({{ $consultant->id }}, event)"><i class="fa fa-edit" aria-hidden="true"></i></a></span>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </table>
@@ -104,7 +108,8 @@
                 </div>
         </div>
 
-            <div class="col-md-12">
+        <!-- Medicine Panel -->
+        <div class="col-md-12">
                 <div class="panel panel-info">
                     <div class="panel-heading">Medicine</div>
                     <div class="panel-body">
@@ -407,7 +412,6 @@
         </div>
     </div>
 
-
     <!-- Add Consultant Modal -->
     <div class="modal fade" id="addConsultantModal" tabindex="-1" role="dialog" aria-labelledby="myAddConsultantModalLabel">
     <div class="modal-dialog" role="document">
@@ -439,6 +443,39 @@
         </div>
     </div>
     </div>
+
+    <!-- Edit Consultant Modal -->
+    <div class="modal fade" id="editConsultantModal" tabindex="-1" role="dialog" aria-labelledby="myConsultantEditModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myConsultantEditModalLabel">Edit Consultant</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="editConsultantForm" method="post" action="{{ route('storeConsultantChanges') }}">
+                        @csrf
+                        <input type="hidden" id="consultantEditId" name="consultantEditId">
+                        <div class="form-group">
+                            <label for="consultantEditName" class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="consultantEditName" id="consultantEditName" placeholder="Consultant Name">
+                                <small style="color:red" id="consultantEditNameError"></small>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="editUserDataBtn" onclick="saveConsultantEditChanges(event)">
+                        Save changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Add Medicine Modal -->
     <div class="modal fade" id="addMedicineModal" tabindex="-1" role="dialog" aria-labelledby="myAddMedicineModalLabel">
@@ -755,6 +792,7 @@
 
         function resetConsultantErrors() {
             $('#consultantNameError').empty('');
+          $('#consultantEditNameError').empty('');
         }
 
         function delConsultant(id, event)
@@ -904,7 +942,6 @@
 
         function saveAppointmentEditChanges(event)
         {
-          resetAppointmentEditErrors();
           let form = $('#editAppointmentForm');
           let formData = form.serialize();
           let url = form.attr('action');
@@ -936,6 +973,7 @@
         }
 
         function resetEditAppointmentDataValues(id, event) {
+          resetAppointmentEditErrors();
             event.preventDefault();
             $('#appointmentEditUser').val('');
             $('#appointmentEditDatetime').val('');
@@ -959,6 +997,52 @@
               error(res) {
                 alert('Something went wrong!')
               }
+            });
+        }
+        
+        function resetEditConsultantDataValues(id, event) {
+          resetConsultantErrors();
+            event.preventDefault();
+            $('#consultantEditName').val('');
+          
+            $.ajax({
+              type: 'GET',
+              url: '{{ route('consultantShow') }}',
+              dataType: "JSON",
+              data: {id: id},
+              success(returnData) {
+                $('#consultantEditName').val(returnData.consultant.name);
+                $('#consultantEditId').val(returnData.consultant.id);
+
+                $('#editConsultantModal').modal('show');
+              },
+              error(res) {
+                alert('Something went wrong!')
+              }
+            });
+        }
+        
+        function saveConsultantEditChanges(event)
+        {
+          resetConsultantErrors();
+          let form = $('#editConsultantForm');
+          let formData = form.serialize();
+          let url = form.attr('action');
+             $.ajax({
+                type: 'POST',
+                url: url,
+                dataType: "JSON",
+                data: formData,
+                success(returnData) {
+                    window.location.reload();
+                },
+                error(res) {
+                  let obj = JSON.parse(res.responseText);
+
+                  if (obj.errors.consultantEditName) {
+                      $('#consultantEditNameError').html(obj.errors.consultantEditName);
+                  }
+                }
             });
         }
     </script>

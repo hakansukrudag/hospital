@@ -43,5 +43,8 @@ Route::post('/appointment/store', [App\Http\Controllers\HomeController::class, '
 
 Route::post('/consultant/delete', [App\Http\Controllers\HomeController::class, 'consultantDelete'])->name('consultantDelete');
 Route::post('/consultant/add', [App\Http\Controllers\HomeController::class, 'consultantAdd'])->name('consultantAdd');
+Route::get('/consultant/show', [App\Http\Controllers\HomeController::class, 'consultantShow'])->name('consultantShow');
+Route::post('/consultant/store', [App\Http\Controllers\HomeController::class, 'storeConsultantChanges'])->name('storeConsultantChanges');
+
 Route::post('/medicine/delete', [App\Http\Controllers\HomeController::class, 'medicineDelete'])->name('medicineDelete');
 Route::post('/medicine/add', [App\Http\Controllers\HomeController::class, 'medicineAdd'])->name('medicineAdd');
