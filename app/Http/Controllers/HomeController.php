@@ -146,6 +146,7 @@ class HomeController extends Controller
         $id = $request->input('consultantEditId');
         $this->validate($request, [
             'consultantEditName' => 'required',
+
         ]);
 
         $consultant = Consultant::find($id);
@@ -164,4 +165,30 @@ class HomeController extends Controller
             ]
         );
     }
+
+    public function storeMedicineChanges(Request $request)
+    {
+        $id = $request->input('medicineEditId');
+        $this->validate($request, [
+            'medicineEditName' => 'required',
+            'medicineEditDose' => 'required',
+        ]);
+
+        $medicine = Medicine::find($id);
+        $medicine->name = $request->input('medicineEditName');
+        $medicine->dose = $request->input('medicineEditDose');
+        $medicine->save();
+        return response()->json(['success => true']);
+    }
+
+    public function medicineShow(Request $request)
+    {
+        $medicine = Medicine::find($request->input('id'));
+        return response()->json(
+            [
+                'medicine' => $medicine,
+            ]
+        );
+    }
+
 }

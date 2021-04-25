@@ -79,7 +79,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Consultant Panel -->
         <div class="col-md-12">
             <div class="panel panel-info">
@@ -126,7 +126,11 @@
                                     <tr>
                                         <td>{{ $medicine->name }}</td>
                                         <td>{{ $medicine->dose }}</td>
-                                        <td><a href="" onclick="delMedicine({{ $medicine->id }}, event)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                                        <td>
+                                            <span><a href="" onclick="delMedicine({{ $medicine->id }}, event)"><i class="fa fa-trash-o" aria-hidden="true"></i></a> </span>
+                                            <span><a href="" onclick="resetEditMedicineDataValues({{ $medicine->id }}, event)"><i class="fa fa-edit" aria-hidden="true"></i></a></span>
+                                        </td>
+
                                     </tr>
                                 @endforeach
                             </table>
@@ -429,7 +433,7 @@
                         <label for="consultantName" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="consultantName" id="consultantName" placeholder="Consultant Name">
-                            <small style="color:red" id="consultantNameError"></small>
+                            <small style="color:#ff0000" id="consultantNameError"></small>
                         </div>
                     </div>
                 </form>
@@ -996,12 +1000,12 @@
               }
             });
         }
-        
+
         function resetEditConsultantDataValues(id, event) {
           resetConsultantErrors();
             event.preventDefault();
             $('#consultantEditName').val('');
-          
+
             $.ajax({
               type: 'GET',
               url: '{{ route('consultantShow') }}',
@@ -1018,7 +1022,7 @@
               }
             });
         }
-        
+
         function saveConsultantEditChanges(event)
         {
           resetConsultantErrors();
@@ -1042,6 +1046,59 @@
                 }
             });
         }
+
+       function resetEditMedicineDataValues(id, event) {
+           resetMedicineErrors();
+           event.preventDefault();
+           $('#medicineEditName').val('');
+           $('#medicineEditDose').val('');
+
+           $.ajax({
+               type: 'GET',
+               url: '{{ route('medicineShow') }}',
+               dataType: "JSON",
+               data: {id: id},
+               success(returnData) {
+                   $('#medicineEditName').val(returnData.medicine.name);
+                   $('#medicineEditDose').val(returnData.medicine.dose);
+                   $('#medicineEditId').val(returnData.medicine.id);
+
+                   $('#editMedicineModal').modal('show');
+               },
+               error(res) {
+                   alert('Something went wrong!')
+               }
+           });
+       }
+
+       function saveMedicineEditChanges(event)
+       {
+           resetMedicineErrors();
+           let form = $('#editMedicineForm');
+           let formData = form.serialize();
+           let url = form.attr('action');
+           $.ajax({
+               type: 'POST',
+               url: url,
+               dataType: "JSON",
+               data: formData,
+               success(returnData) {
+                   window.location.reload();
+               },
+               error(res) {
+                   let obj = JSON.parse(res.responseText);
+
+                   if (obj.errors.medicineEditName) {
+                       $('#medicineEditNameError').html(obj.errors.medicineEditName);
+                       if (obj.errors.medicineEditDose) {
+                           $('#medicineEditDoseError').html(obj.errors.medicineEditDose);
+                       }
+                   }
+               }
+           });
+
+       }
+
     </script>
 @endpush
 
