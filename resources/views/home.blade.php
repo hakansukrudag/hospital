@@ -11,7 +11,7 @@
             <div class="panel panel-info">
                        <div class="panel-heading">User</div>
                        <div class="panel-body">
-                           <button onclick="resetUserDataValues(event)" class="btn btn-sm btn-secondary">Add New</button>
+                           <button onclick="resetAndShowUserModalBox(event)" class="btn btn-sm btn-secondary">Add New</button>
                            <hr>
                            <div class="table-responsive">
                                <table class="table table-condensed">
@@ -35,8 +35,8 @@
                                                <td>User</td>
                                            @endif
                                            <td>
-                                              <span><a href="" onclick="del({{ $user->id }}, event)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></span>
-                                               <span><a href="" onclick="resetEditUserDataValues({{ $user->id }}, event)"><i class="fa fa-edit" aria-hidden="true"></i></a></span>
+                                              <span><a href="" onclick="delUser({{ $user->id }}, event)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></span>
+                                               <span><a href="" onclick="resetAndShowEditUserModalBox({{ $user->id }}, event)"><i class="fa fa-edit" aria-hidden="true"></i></a></span>
                                            </td>
                                        </tr>
                                    @endforeach
@@ -70,7 +70,7 @@
                                     <td>{{ $appointment->procedure->name }}</td>
                                     <td>
                                         <span><a href="" onclick="delAppointment({{ $appointment->id }})"><i class="fa fa-trash-o" aria-hidden="true"></i></a></span>
-                                        <span><a href="" onclick="resetEditAppointmentDataValues({{ $appointment->id }}, event)"><i class="fa fa-edit" aria-hidden="true"></i></a></span>
+                                        <span><a href="" onclick="resetEditAppointmentModalBox({{ $appointment->id }}, event)"><i class="fa fa-edit" aria-hidden="true"></i></a></span>
                                     </td>
                                 </tr>
                             @endforeach
@@ -270,7 +270,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="editUserDataBtn" onclick="saveChanges(event)">
+                    <button type="button" class="btn btn-primary" id="editUserDataBtn" onclick="updateUserChanges(event)">
                         Save changes
                     </button>
                 </div>
@@ -523,8 +523,11 @@
 @push('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
     <script>
-        function resetUserDataValues() {
+
+       // When user click "Add User" button, the function will be executed below
+        function resetAndShowUserModalBox() {
             event.preventDefault();
+            resetUserErrorMessages();
             $('#name').val('');
             $('#email').val('');
             $('#age').val('');
@@ -533,7 +536,7 @@
             $('#addUserModal').modal('show');
         }
 
-        function resetEditUserDataValues(id, event) {
+        function resetAndShowEditUserModalBox(id, event) {
             event.preventDefault();
             $('#editName').val('');
             $('#editEmail').val('');
@@ -562,7 +565,7 @@
             });
         }
 
-        function resetErrorMessages() {
+        function resetUserErrorMessages() {
             $('#nameError').empty('');
             $('#emailError').empty('');
             $('#ageError').empty();
@@ -578,9 +581,7 @@
         }
 
         function storeUserData(event) {
-            resetErrorMessages();
             event.preventDefault();
-
             let form = $('#userForm');
             let formData = form.serialize();
             let url = form.attr('action');
@@ -628,7 +629,7 @@
             });
         }
 
-        function del(id, event)
+        function delUser(id, event)
         {
           event.preventDefault();
           Swal.fire({
@@ -663,9 +664,8 @@
           });
         }
 
-        function saveChanges(event)
+        function updateUserChanges(event)
         {
-          resetEditErrorMessages();
             event.preventDefault();
             let form = $('#editUserForm');
             let formData = form.serialize();
@@ -861,14 +861,11 @@
             $('#addConsultantModal').modal('show');
         }
 
-
-
         <!-- Medicine -->
-
-            function resetMedicineErrors() {
-                $('#medicineNameError').empty('');
-                $('#medicineDoseError').empty('');
-            }
+        function resetMedicineErrors() {
+            $('#medicineNameError').empty('');
+            $('#medicineDoseError').empty('');
+        }
 
         function delMedicine(id, event)
         {
@@ -972,7 +969,7 @@
             });
         }
 
-        function resetEditAppointmentDataValues(id, event) {
+        function resetEditAppointmentModalBox(id, event) {
           resetAppointmentEditErrors();
             event.preventDefault();
             $('#appointmentEditUser').val('');
