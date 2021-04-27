@@ -78,8 +78,14 @@
 
                 </ul>
               </li>
-              <li><a href="#">Play</a></li>
+              <li><a href="#">Play</a>
 
+                  <ul>
+                      <li><a href="/game1/index.html">Game1 Coloring Book</a></li>
+
+                      <li><a href="/game2/index.html">Game2 Rock-Paper-Scissors</a></li>
+                  </ul>
+              </li>
               <li><a href="{{ url('/contact') }}">Contact</a></li>
 
               <li>

@@ -35,7 +35,7 @@
                                                <td>User</td>
                                            @endif
                                            <td>
-                                              <span><a href="" onclick="delUser({{ $user->id }}, event)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></span>
+                                               <span><a href="" onclick="delUser({{ $user->id }}, event)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></span>
                                                <span><a href="" onclick="resetAndShowEditUserModalBox({{ $user->id }}, event)"><i class="fa fa-edit" aria-hidden="true"></i></a></span>
                                            </td>
                                        </tr>
@@ -796,7 +796,7 @@
 
         function resetConsultantErrors() {
             $('#consultantNameError').empty('');
-          $('#consultantEditNameError').empty('');
+            $('#consultantEditNameError').empty('');
         }
 
         function delConsultant(id, event)
@@ -865,7 +865,6 @@
             $('#addConsultantModal').modal('show');
         }
 
-        <!-- Medicine -->
         function resetMedicineErrors() {
             $('#medicineNameError').empty('');
             $('#medicineDoseError').empty('');
@@ -1088,15 +1087,14 @@
                error(res) {
                    let obj = JSON.parse(res.responseText);
 
-                   if (obj.errors.medicineEditName) {
+                   if (obj.errors.MedicineEditName) {
                        $('#medicineEditNameError').html(obj.errors.medicineEditName);
-                       if (obj.errors.medicineEditDose) {
-                           $('#medicineEditDoseError').html(obj.errors.medicineEditDose);
-                       }
+                   }
+                   if (obj.errors.MedicineEditDose) {
+                       $('#medicineEditDoseError').html(obj.errors.medicineDoseName);
                    }
                }
            });
-
        }
 
     </script>

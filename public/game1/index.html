@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Coloring Book for Kids</title>
+
+        <style rel="stylesheet">
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body {
+                background-color: #212f3c;
+            }
+            .container {
+                margin-top: 60px;
+            }
+            .game {
+                border: 10px solid #333;
+                color: #333;
+                margin: 0 auto;
+                width: 880px;
+                height: 500px;
+            }
+            .fullscreen-button {
+                margin-top: 30px;
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="game">
+                <iframe frameborder="0" src="game/index.html" width="860px" height="480px"></iframe>
+            </div>
+            <div class="fullscreen-button">
+                <a href="game/index.html">
+                    <img src="fullscreen_button.png">
+                </a>
+            </div>
+        </div>
+    </body>
+</html>

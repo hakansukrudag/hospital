@@ -50,3 +50,4 @@ Route::post('/medicine/delete', [App\Http\Controllers\HomeController::class, 'me
 Route::post('/medicine/add', [App\Http\Controllers\HomeController::class, 'medicineAdd'])->name('medicineAdd');
 Route::get('/medicine/show', [App\Http\Controllers\HomeController::class, 'medicineShow'])->name('medicineShow');
 Route::post('/medicine/store', [App\Http\Controllers\HomeController::class, 'storeMedicineChanges'])->name('storeMedicineChanges');
+
