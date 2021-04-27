@@ -520,6 +520,45 @@
         </div>
     </div>
 
+<!-- Edit Medicine Modal -->
+<div class="modal fade" id="editMedicineModal" tabindex="-1" role="dialog" aria-labelledby="myEditMedicineModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myEditMedicineModalLabel">Edit Medicine</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="editMedicineForm" method="post" action="{{ route('storeMedicineChanges') }}">
+                    @csrf
+                    <input type="hidden" name="medicineEditId" id="medicineEditId">
+                    <div class="form-group">
+                        <label for="medicineEditName" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="medicineEditName" id="medicineEditName" placeholder="Medicine Name">
+                            <small style="color:red" id="medicineEditNameError"></small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="medicineEditDose" class="col-sm-2 control-label">Dose</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="medicineEditDose" id="medicineEditDose" placeholder="Medicine Dose">
+                            <small style="color:red" id="medicineEditDoseError"></small>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary"  onclick="saveMedicineEditChanges(event)">
+                    Save changes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 @push('css')
     <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
@@ -1047,9 +1086,8 @@
         }
 
        function resetEditMedicineDataValues(id, event) {
-
+         event.preventDefault();
             resetMedicineErrors();
-           event.preventDefault();
            $('#medicineEditName').val('');
            $('#medicineEditDose').val('');
 
@@ -1073,6 +1111,7 @@
 
        function saveMedicineEditChanges(event)
        {
+         event.preventDefault();
            resetMedicineErrors();
            let form = $('#editMedicineForm');
            let formData = form.serialize();

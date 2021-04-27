@@ -179,7 +179,7 @@ class HomeController extends Controller
         $medicine->dose = $request->input('medicineEditDose');
 
         $medicine->save();
-        return response()->json(['success => true']);
+        return response()->json(['success' => true]);
     }
 
     public function medicineShow(Request $request)
