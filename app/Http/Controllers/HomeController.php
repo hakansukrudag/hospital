@@ -88,6 +88,28 @@ class HomeController extends Controller
         return response()->json(['success' => true]);
     }
 
+    public function procedureDelete(Request $request)
+    {
+        $id = $request->input('id');
+
+        Procedure::find($id)->delete();
+        return response()->json(['success' => true]);
+    }
+
+    public function procedureAdd(Request $request)
+    {
+        $this->validate($request, [
+            'procedureName' => 'required|max:255',
+        ]);
+
+        $newProcedureRecord = new Procedure();
+        $newProcedureRecord->name = $request->input('procedureName');
+        $newProcedureRecord->save();
+
+        return response()->json(['success' => true]);
+    }
+
+
     public function medicineDelete(Request $request)
     {
         $id = $request->input('id');
@@ -162,6 +184,31 @@ class HomeController extends Controller
         return response()->json(
             [
                 'consultant' => $consultant,
+            ]
+        );
+    }
+
+    public function storeProcedureChanges(Request $request)
+    {
+        $id = $request->input('procedureEditId');
+        $this->validate($request, [
+            'procedureEditName' => 'required',
+
+        ]);
+
+        $procedure = Procedure::find($id);
+        $procedure->name = $request->input('procedureEditName');
+
+        $procedure->save();
+        return response()->json(['success => true']);
+    }
+
+    public function procedureShow(Request $request)
+    {
+        $procedure = Procedure::find($request->input('id'));
+        return response()->json(
+            [
+                'procedure' => $procedure,
             ]
         );
     }

@@ -108,6 +108,34 @@
                 </div>
         </div>
 
+        <!-- Procedure Panel -->
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">Procedure</div>
+                <div class="panel-body">
+                    <button onclick="resetProcedureValues()" class="btn btn-sm btn-secondary">Add New</button>
+                    <hr>
+                    <div class="table-responsive">
+                        <table class="table table-condensed">
+                            <tr>
+                                <td>Name</td>
+                                <td>Action</td>
+                            </tr>
+                            @foreach($procedures as $procedure)
+                                <tr>
+                                    <td>{{ $procedure->name }}</td>
+                                    <td>
+                                        <span><a href="" onclick="delProcedure({{ $procedure->id }}, event)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></span>
+                                        <span><a href="" onclick="resetEditProcedureDataValues({{ $procedure->id }}, event)"><i class="fa fa-edit" aria-hidden="true"></i></a></span>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Medicine Panel -->
         <div class="col-md-12">
                 <div class="panel panel-info">
@@ -481,6 +509,72 @@
     </div>
 
 
+
+<!-- Add Procedure Modal -->
+<div class="modal fade" id="addProcedureModal" tabindex="-1" role="dialog" aria-labelledby="myAddProcedureModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myAddProcedureModalLabel">Add Procedure</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="procedureForm" method="post" action="{{ route('procedureAdd') }}">
+                    @csrf
+
+                    <div class="form-group">
+                        <label for="procedureName" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="procedureName" id="procedureName" placeholder="Procedure Name">
+                            <small style="color:#ff0000" id="procedureNameError"></small>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary"  onclick="storeProcedureData(event)">
+                    Save changes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Procedure Modal -->
+<div class="modal fade" id="editProcedureModal" tabindex="-1" role="dialog" aria-labelledby="myProcedureEditModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myProcedureEditModalLabel">Edit Procedure</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="editProcedureForm" method="post" action="{{ route('storeProcedureChanges') }}">
+                    @csrf
+                    <input type="hidden" id="procedureEditId" name="procedureEditId">
+                    <div class="form-group">
+                        <label for="procedureEditName" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="procedureEditName" id="procedureEditName" placeholder="Procedure Name">
+                            <small style="color:red" id="procedureEditNameError"></small>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="editUserDataBtn" onclick="saveProcedureEditChanges(event)">
+                    Save changes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     <!-- Add Medicine Modal -->
     <div class="modal fade" id="addMedicineModal" tabindex="-1" role="dialog" aria-labelledby="myAddMedicineModalLabel">
         <div class="modal-dialog" role="document">
@@ -838,40 +932,45 @@
             $('#consultantEditNameError').empty('');
         }
 
-        function delConsultant(id, event)
-        {
-          event.preventDefault();
-          Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Yes, delete it!'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              $.ajax({
-                  type: 'POST',
-                  url: '{{ route('consultantDelete') }}',
-                  dataType: "JSON",
-                  data: {id: id, _token:'{{ @csrf_token() }}'},
-                  success(returnData) {
-                      window.location.reload();
-                  },
+        function resetProcedureErrors() {
+            $('#procedureNameError').empty('');
+            $('#procedureEditNameError').empty('');
+       }
 
-                  error(res) {
+       function delConsultant(id, event)
+       {
+           event.preventDefault();
+           Swal.fire({
+               title: 'Are you sure?',
+               text: "You won't be able to revert this!",
+               icon: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#d33',
+               cancelButtonColor: '#3085d6',
+               confirmButtonText: 'Yes, delete it!'
+           }).then((result) => {
+               if (result.isConfirmed) {
+                   $.ajax({
+                       type: 'POST',
+                       url: '{{ route('consultantDelete') }}',
+                       dataType: "JSON",
+                       data: {id: id, _token:'{{ @csrf_token() }}'},
+                       success(returnData) {
+                           window.location.reload();
+                       },
 
-                  }
-              });
-              Swal.fire(
-                'Deleted!',
-                'Your record has been deleted.',
-                'success'
-              );
-            }
-          });
-        }
+                       error(res) {
+
+                       }
+                   });
+                   Swal.fire(
+                       'Deleted!',
+                       'Your record has been deleted.',
+                       'success'
+                   );
+               }
+           });
+       }
 
         function storeConsultantData()
         {
@@ -903,6 +1002,75 @@
             $('#consultantName').val('');
             $('#addConsultantModal').modal('show');
         }
+
+
+       function delProcedure(id, event)
+       {
+           event.preventDefault();
+           Swal.fire({
+               title: 'Are you sure?',
+               text: "You won't be able to revert this!",
+               icon: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#d33',
+               cancelButtonColor: '#3085d6',
+               confirmButtonText: 'Yes, delete it!'
+           }).then((result) => {
+               if (result.isConfirmed) {
+                   $.ajax({
+                       type: 'POST',
+                       url: '{{ route('procedureDelete') }}',
+                       dataType: "JSON",
+                       data: {id: id, _token:'{{ @csrf_token() }}'},
+                       success(returnData) {
+                           window.location.reload();
+                       },
+
+                       error(res) {
+
+                       }
+                   });
+                   Swal.fire(
+                       'Deleted!',
+                       'Your record has been deleted.',
+                       'success'
+                   );
+               }
+           });
+       }
+
+
+       function storeProcedureData()
+       {
+           resetProcedureErrors();
+           let form = $('#procedureForm');
+           let formData = form.serialize();
+           let url = form.attr('action');
+           $.ajax({
+               type: 'POST',
+               url: url,
+               dataType: "JSON",
+               data: formData,
+               success(returnData) {
+                   window.location.reload();
+               },
+               error(res) {
+                   let obj = JSON.parse(res.responseText);
+
+                   if (obj.errors.procedureName) {
+                       $('#procedureNameError').html(obj.errors.procedureName);
+
+                   }
+               }
+           });
+       }
+
+       function resetProcedureValues() {
+           event.preventDefault();
+           $('#procedureName').val('');
+           $('#addProcedureModal').modal('show');
+       }
+
 
         function resetMedicineErrors() {
             $('#medicineNameError').empty('');
@@ -979,6 +1147,35 @@
             $('#addMedicineModal').modal('show');
         }
 
+
+       function resetEditAppointmentModalBox(id, event) {
+           resetAppointmentEditErrors();
+           event.preventDefault();
+           $('#appointmentEditUser').val('');
+           $('#appointmentEditDatetime').val('');
+           $('#appointmentEditDepartment').val('');
+           $('#appointmentEditProcedure').val('');
+
+
+           $.ajax({
+               type: 'GET',
+               url: '{{ route('appointmentShow') }}',
+               dataType: "JSON",
+               data: {id: id},
+               success(returnData) {
+                   $('#appointmentEditUser').val(returnData.appointment.fk_user_id);
+                   $('#appointmentEditId').val(returnData.appointment.id);
+                   $('#appointmentEditDatetime').val(returnData.datetime);
+                   $('#appointmentEditDepartment').val(returnData.appointment.fk_department_id);
+                   $('#appointmentEditProcedure').val(returnData.appointment.fk_procedure_id);
+                   $('#editAppointmentModal').modal('show');
+               },
+               error(res) {
+                   alert('Something went wrong!')
+               }
+           });
+       }
+
         function saveAppointmentEditChanges(event)
         {
           let form = $('#editAppointmentForm');
@@ -1011,33 +1208,6 @@
             });
         }
 
-        function resetEditAppointmentModalBox(id, event) {
-          resetAppointmentEditErrors();
-            event.preventDefault();
-            $('#appointmentEditUser').val('');
-            $('#appointmentEditDatetime').val('');
-            $('#appointmentEditDepartment').val('');
-            $('#appointmentEditProcedure').val('');
-
-
-            $.ajax({
-              type: 'GET',
-              url: '{{ route('appointmentShow') }}',
-              dataType: "JSON",
-              data: {id: id},
-              success(returnData) {
-                $('#appointmentEditUser').val(returnData.appointment.fk_user_id);
-                $('#appointmentEditId').val(returnData.appointment.id);
-                $('#appointmentEditDatetime').val(returnData.datetime);
-                $('#appointmentEditDepartment').val(returnData.appointment.fk_department_id);
-                $('#appointmentEditProcedure').val(returnData.appointment.fk_procedure_id);
-                $('#editAppointmentModal').modal('show');
-              },
-              error(res) {
-                alert('Something went wrong!')
-              }
-            });
-        }
 
         function resetEditConsultantDataValues(id, event) {
           resetConsultantErrors();
@@ -1084,6 +1254,55 @@
                 }
             });
         }
+
+
+       function resetEditProcedureDataValues(id, event) {
+           resetProcedureErrors();
+           event.preventDefault();
+           $('#procedureEditName').val('');
+
+           $.ajax({
+               type: 'GET',
+               url: '{{ route('procedureShow') }}',
+               dataType: "JSON",
+               data: {id: id},
+               success(returnData) {
+                   $('#procedureEditName').val(returnData.procedure.name);
+                   $('#procedureEditId').val(returnData.procedure.id);
+
+                   $('#editProcedureModal').modal('show');
+               },
+               error(res) {
+                   alert('Something went wrong!')
+               }
+           });
+       }
+
+       function saveProcedureEditChanges(event)
+       {
+           resetProcedureErrors();
+           let form = $('#editProcedureForm');
+           let formData = form.serialize();
+           let url = form.attr('action');
+           $.ajax({
+               type: 'POST',
+               url: url,
+               dataType: "JSON",
+               data: formData,
+               success(returnData) {
+                   window.location.reload();
+               },
+               error(res) {
+                   let obj = JSON.parse(res.responseText);
+
+                   if (obj.errors.procedureEditName) {
+                       $('#procedureEditNameError').html(obj.errors.procedureEditName);
+                   }
+               }
+           });
+       }
+
+
 
        function resetEditMedicineDataValues(id, event) {
          event.preventDefault();
