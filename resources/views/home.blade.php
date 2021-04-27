@@ -867,7 +867,7 @@
 
         function resetMedicineErrors() {
             $('#medicineNameError').empty('');
-            $('#medicineDoseError').empty('');
+            $('#medicineEditNameError').empty('');
         }
 
         function delMedicine(id, event)
@@ -1047,7 +1047,8 @@
         }
 
        function resetEditMedicineDataValues(id, event) {
-           resetMedicineErrors();
+
+            resetMedicineErrors();
            event.preventDefault();
            $('#medicineEditName').val('');
            $('#medicineEditDose').val('');

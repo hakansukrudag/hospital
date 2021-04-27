@@ -177,6 +177,7 @@ class HomeController extends Controller
         $medicine = Medicine::find($id);
         $medicine->name = $request->input('medicineEditName');
         $medicine->dose = $request->input('medicineEditDose');
+
         $medicine->save();
         return response()->json(['success => true']);
     }
