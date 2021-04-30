@@ -39,12 +39,8 @@
                     </ul>
                 </li>
               @endif
-              <li><a class="active">Home</a>
-                <ul>
-                  <li><a href="{{ url('/') }}">Home</a></li>
+              <li><a class="active" href="{{ url('/') }}">Home</a>
 
-
-                </ul>
               </li>
               <li><a href="{{ url('/about') }}">About</a></li>
               <li><a>Clicical</a>
@@ -54,29 +50,12 @@
 
                 </ul>
               </li>
-              <li><a>Treatment</a>
-                <ul>
-                  <li><a>Blog</a>
-                    <ul>
-                      <li><a href="#">Blog Categories</a></li>
-
-                    </ul>
-                  </li>
-                  <li><a>services</a>
-                    <ul>
-
-                      <li><a href="#">services Three Column</a></li>
-
-                    </ul>
-                  </li>
-                  <li><a>profile</a>
+              <li><a>Profile</a>
                     <ul>
                       <li><a href="#">profile single</a></li>
                     </ul>
                   </li>
-                  <li><a href="#">Elements</a></li>
 
-                </ul>
               </li>
               <li><a href="#">Play</a>
 
@@ -84,6 +63,10 @@
                       <li><a href="/game1/index.html">Game1 Coloring Book</a></li>
 
                       <li><a href="/game2/index.html">Game2 Rock-Paper-Scissors</a></li>
+
+                      <li><a href="/game3/index.html">Game3 </a></li>
+
+
                   </ul>
               </li>
               <li><a href="{{ url('/contact') }}">Contact</a></li>
