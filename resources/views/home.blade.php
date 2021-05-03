@@ -190,7 +190,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="age" class="col-sm-2 control-label">Age</label>
+                            <label for="age" class="col-sm-2 control-label">Date of Birth</label>
                             <div class="col-sm-10">
                                 <input type="date" class="form-control" name="age" id="age" placeholder="Age">
                                 <small style="color:red" id="ageError"></small>
@@ -267,7 +267,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="editAge" class="col-sm-2 control-label">Age</label>
+                            <label for="editAge" class="col-sm-2 control-label">Date of Birth</label>
                             <div class="col-sm-10">
                                 <input type="date" class="form-control" name="editAge" id="editAge" placeholder="Age">
                                 <small style="color:red" id="editAgeError"></small>
@@ -675,6 +675,7 @@
 
         function resetAndShowEditUserModalBox(id, event) {
             event.preventDefault();
+            resetEditErrorMessages();
             $('#editName').val('');
             $('#editEmail').val('');
             $('#editAge').val('');
