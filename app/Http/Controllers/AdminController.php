@@ -41,7 +41,7 @@ class AdminController extends Controller
         $consultants = Consultant::all();
         $medicines = Medicine::all();
         $usersAppointment = User::where('admin', false)->get();
-        return view('home', compact('users', 'appointments', 'departments', 'procedures', 'usersAppointment', 'consultants', 'medicines'));
+        return view('admin_dashboard', compact('users', 'appointments', 'departments', 'procedures', 'usersAppointment', 'consultants', 'medicines'));
     }
 
     public function appointmentDelete(Request $request)

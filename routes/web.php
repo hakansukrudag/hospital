@@ -26,12 +26,14 @@ Route::get('/about', function () {
 });
 
 Route::get('/admin', function () {
-    return view('home');
+    return view('admin_dashboard');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\AdminController::class, 'index'])->name('home');
+Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'index'])->name('adminDashboard');
+Route::get('/user/dashboard', [App\Http\Controllers\UserController::class, 'index'])->name('userDashboard');
+
 Route::post('/user/store', [App\Http\Controllers\AdminController::class, 'store'])->name('storeUserData');
 Route::post('/user/delete', [App\Http\Controllers\AdminController::class, 'delete'])->name('userDelete');
 Route::get('/user/show', [App\Http\Controllers\AdminController::class, 'show'])->name('showUserData');
