@@ -50,6 +50,8 @@
 
                 </ul>
               </li>
+
+                  @if (Auth::user())
               <li><a>Profile</a>
                     <ul>
                       <li><a href="#">profile single</a></li>
@@ -69,6 +71,8 @@
 
                   </ul>
               </li>
+                  @endif
+
               <li><a href="{{ url('/contact') }}">Contact</a></li>
 
               <li>
