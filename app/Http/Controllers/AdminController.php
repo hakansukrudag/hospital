@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
 use App\Models\Appointment;
 use App\Models\Consultant;
 use App\Models\Department;
@@ -9,13 +10,12 @@ use App\Models\Procedure;
 use App\Models\Medicine;
 use App\Models\User;
 use Carbon\Carbon;
-use DateTime;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    use Helper;
     /**
      * Create a new controller instance.
      *
@@ -262,13 +262,6 @@ class AdminController extends Controller
         return response()->json(['success => true']);
     }
 
-    private function ageCalculator(string $date): int
-    {
-        $date = new DateTime($date);
-        $now = new DateTime();
-        return $now->diff($date)->y;
-    }
-
     public function delete(Request $request): JsonResponse
     {
         User::find($request->input('id'))->delete();
@@ -307,11 +300,4 @@ class AdminController extends Controller
         return response()->json(['success' => true]);
     }
 
-    public function reverseBirthday(?int $years): string
-    {
-        if ($years === null) {
-            return '0';
-        }
-    return date('Y-m-d', strtotime($years . ' years ago'));
-    }
 }

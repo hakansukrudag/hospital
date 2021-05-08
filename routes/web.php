@@ -31,6 +31,15 @@ Route::get('/admin', function () {
 
 Auth::routes();
 
+/**
+ * User Dashboard
+ */
+Route::get('/user/dashboard/profile', [App\Http\Controllers\UserController::class, 'showUserProfile'])->name('showUserProfile');
+Route::post('/user/dashboard/profile', [App\Http\Controllers\UserController::class, 'storeUserProfile'])->name('storeUserProfile');
+
+/********************************************
+ * AJAX Routes
+ */
 Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'index'])->name('adminDashboard');
 Route::get('/user/dashboard', [App\Http\Controllers\UserController::class, 'index'])->name('userDashboard');
 
@@ -57,3 +66,4 @@ Route::post('/procedure/delete', [App\Http\Controllers\AdminController::class, '
 Route::post('/procedure/add', [App\Http\Controllers\AdminController::class, 'procedureAdd'])->name('procedureAdd');
 Route::get('/procedure/show', [App\Http\Controllers\AdminController::class, 'procedureShow'])->name('procedureShow');
 Route::post('/procedure/store', [App\Http\Controllers\AdminController::class, 'storeProcedureChanges'])->name('storeProcedureChanges');
+/****************************************************/

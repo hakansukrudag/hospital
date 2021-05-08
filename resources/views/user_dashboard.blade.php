@@ -7,16 +7,16 @@
     </div>
     <div class="row" style="margin-bottom: 100px;">
         <div class="col-md-2">
-            <button type="button" class="btn btn-secondary">Profile</button>
+            <a type="button" href="{{ route('showUserProfile') }}" class="btn btn-secondary">Profile</a>
         </div>
         <div class="col-md-2">
-            <button type="button" class="btn btn-secondary">Department</button>
+            <a type="button" class="btn btn-secondary">Department</a>
         </div>
         <div class="col-md-2">
-            <button type="button" class="btn btn-secondary">Procedure</button>
+            <a type="button" class="btn btn-secondary">Procedure</a>
         </div>
         <div class="col-md-2">
-            <button type="button" class="btn btn-secondary">Medicine</button>
+            <a type="button" class="btn btn-secondary">Medicine</a>
         </div>
     </div>
 </div>
