@@ -14,21 +14,25 @@
                  <a style="color: aliceblue;" href="{{ url('/') }}">Home | </a>
 
                   @if (Auth::check())
-                      <a style="color: aliceblue;" href="{{ url('/home') }}">Admin Dashboard |</a>
+                      <a style="color: aliceblue;" href="{{ url('/admin/dashboard') }}">Admin Dashboard |</a>
                       <a style="color: aliceblue;" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                          Logout
+                          Logout |
                       </a>
 
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                           {{ csrf_field() }}
                       </form>
+
+                  @if (Auth::user())
+                      <a style="color: aliceblue;" href="{{ url('/user/dashboard') }}">User Profile |</a>
+                        @endif
                       @endif
 
-
+        </div>
 
             <ul class="hs_menu collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               @if (Auth::guest())
-                <li><a style="color: aliceblue;" class="active">Login |</a>
+                <li><a style="color: aliceblue;" class="active"> | Login |</a>
                   <ul>
                     <li><a href="{{ route('login') }}">Login</a></li>
                     <li><a href="{{ route('register') }}">Register</a></li>

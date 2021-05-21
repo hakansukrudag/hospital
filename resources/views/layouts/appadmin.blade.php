@@ -21,7 +21,6 @@
     <script src="https://kit.fontawesome.com/451d91865c.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="{{ asset('css/fonts.css') }}" media="screen"/>
 	<link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}" media="screen"/>
-	<link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}" media="screen"/>
 	<link rel="stylesheet" href="{{ asset('css/jquery.bxslider.css') }}" media="screen"/>
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}" media="screen"/>
 	<link rel="stylesheet" href="{{ asset('css/color/style_baby.css') }}" media="screen"/>
