@@ -37,6 +37,12 @@ Auth::routes();
 Route::get('/user/dashboard/profile', [App\Http\Controllers\UserController::class, 'showUserProfile'])->name('showUserProfile');
 Route::post('/user/dashboard/profile', [App\Http\Controllers\UserController::class, 'storeUserProfile'])->name('storeUserProfile');
 
+/**
+ *  User Department
+ */
+Route::get('/user/dashboard/contact-details', [App\Http\Controllers\UserController::class, 'showContactDetails'])->name('showContactDetails');
+Route::post('/user/dashboard/contact-details', [App\Http\Controllers\UserController::class, 'storeContactDetails'])->name('storeContactDetails');
+
 /********************************************
  * AJAX Routes
  */

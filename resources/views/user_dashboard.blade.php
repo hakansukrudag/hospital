@@ -10,7 +10,7 @@
             <a type="button" href="{{ route('showUserProfile') }}" class="btn btn-secondary">Profile</a>
         </div>
         <div class="col-md-2">
-            <a type="button" class="btn btn-secondary">Department</a>
+            <a type="button" href="{{ route('showContactDetails') }}" class="btn btn-secondary">Contact Details</a>
         </div>
         <div class="col-md-2">
             <a type="button" class="btn btn-secondary">Procedure</a>
