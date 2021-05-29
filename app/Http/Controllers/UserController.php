@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
+use App\Models\Appointment;
 use App\Models\Contact;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,7 +15,28 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('user_dashboard');
+        $user = Auth::user();
+        if ($user) {
+            $dob = $this->reverseBirthday($user->age);
+        }
+
+        $contactDetails = null;
+        if ($user) {
+            $contactDetails = $user->contactDetails ?? null;
+        }
+
+        $medicineDetails = null;
+        if ($user) {
+            $medicineDetails = $user->medicineDetails ?? null;
+        }
+
+        $appointment = optional($user->appointmentDetails);
+
+        return view('user_dashboard',
+            compact('user',
+                    'contactDetails',
+                    'appointment',
+                    'medicineDetails'));
     }
 
     public function showUserProfile()

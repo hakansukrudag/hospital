@@ -25,4 +25,5 @@ class Appointment extends Model
     {
         return $this->belongsTo(Procedure::class, 'fk_procedure_id', 'id');
     }
+
 }
