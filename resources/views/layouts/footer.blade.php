@@ -8,7 +8,6 @@
               <li><a href="{{ url('/') }}">Home</a></li>
               <li><a href="{{ url('/about') }}">About</a></li>
               <li><a href="{{ url('/services') }}">Services</a></li>
-              <li><a href="#">Blog</a></li>
                 <li><a href="{{ url('/contact') }}">Contact</a></li>
             </ul>
           </div>
@@ -98,4 +97,4 @@
     </div>
   </div>
 </footer>
-<div class="hs_copyright">Copyright © 2020 Glasgow Clyde College Web Enginineering 2 Class.</div>
+<div class="hs_copyright">Copyright © 2020 Glasgow Clyde College Web Engineering 2 Class.</div>

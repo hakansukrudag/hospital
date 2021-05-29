@@ -29,7 +29,7 @@
     							<div class="col-lg-12 col-md-12 col-sm-12">
     								<h1 class="hs_slider_title animated bounceInDown">Book your Appointment</h1>
     								<p class="lead animated pulse">Suspendisse eu sem tortor Etiam rhoncus viverra mi ac tempor turpis rutrum in.<br> Vivamus porttitor rhoncus tellus, id ultricies eros gravida ut.</p>
-    								<a href="#hs_appointment_form_link" class="btn btn-default animated fadeInRightBig">Book Now</a>
+    								<a href="#" class="btn btn-default animated fadeInRightBig">Book Now</a>
     							</div>
     						</div>
     					</div>
@@ -48,7 +48,7 @@
                     <h1 class="hs_slider_title animated bounceInDown">Meet Our Doctor’s Team</h1>
                     <p class="lead animated pulse">Suspendisse eu sem tortor Etiam rhoncus viverra mi ac tempor turpis
                       rutrum in.<br> Vivamus porttitor rhoncus tellus, id ultricies eros gravida ut.</p>
-                    <a href="" class="btn btn-default animated fadeInRightBig">Know More</a>
+                    <a href="#" class="btn btn-default animated fadeInRightBig">Know More</a>
                   </div>
                 </div>
               </div>
@@ -90,7 +90,7 @@
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12">
                 <p>Quisque vitae interdum ipsum. Nulla eget mper nulla. Proin lacinia urna quis tortor </p>
-                <a href="blog-single-post-rightsidebar.html" class="btn btn-default">Read More</a> </div>
+                <a href="#" class="btn btn-default">Read More</a> </div>
             </div>
           </div>
         </div>
@@ -111,7 +111,7 @@
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12">
                 <p>Quisque vitae interdum ipsum. Nulla eget mper nulla. Proin lacinia urna quis tortor </p>
-                <a href="blog-single-post-rightsidebar.html" class="btn btn-default">Read More</a> </div>
+                <a href="#" class="btn btn-default">Read More</a> </div>
             </div>
           </div>
         </div>
@@ -138,7 +138,7 @@
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12">
                 <p>Quisque vitae interdum ipsum. Nulla eget mper nulla. </p>
-                <a href="blog-single-post-rightsidebar.html" class="btn btn-default">Read More</a> </div>
+                <a href="#" class="btn btn-default">Read More</a> </div>
             </div>
           </div>
         </div>
@@ -164,7 +164,7 @@
                       <p>Cras velit ligula, sodaleut enim quis, venenatis feugiat ante. lus facilisis nisl. Praesent aliquet</p>
                       <p>sollicitudin leo, eu oare nibh sodales et. Vestibulum blandit,eu oare nibh sodales et. </p>
                       <div class="hs_margin_30"></div>
-                      <a href="blog-single-post-rightsidebar.html" class="btn btn-default">Read More</a><div class="hs_margin_20"></div>
+                      <a href="#" class="btn btn-default">Read More</a><div class="hs_margin_20"></div>
     				</div>
                 </div>
               </div>
@@ -175,7 +175,7 @@
                       <p>Cras velit ligula, sodaleut enim quis, venenatis feugiat ante. lus facilisis nisl. Praesent aliquet</p>
                       <p>sollicitudin leo, eu oare nibh sodales et. Vestibulum blandit,eu oare nibh sodales et. </p>
                       <div class="hs_margin_30"></div>
-                      <a href="blog-single-post-rightsidebar.html" class="btn btn-default">Read More</a><div class="hs_margin_20"> </div>
+                      <a href="#" class="btn btn-default">Read More</a><div class="hs_margin_20"> </div>
     				  </div>
                     <div class="col-lg-6 col-md-6 col-sm-6"> <img width="228" height="252" src="{{ asset('images/Services1.jpg') }}" alt="" /> </div>
                 </div>
@@ -185,7 +185,7 @@
                   <div class="col-lg-12 col-md-12 col-sm-12"> <img width="515" height="252" src="{{ asset('images/Services2.jpg') }}" alt="" />
                     <h4 class="hs_theme_color">Morbi id pulvinar enim. Vestibulum sed .</h4>
                     <p>Cras velit ligula, sodaleut enim quis, venenatis feugiat ante. lus facilisis nisl. Praesent aliquet. sollicitudin leo, eu oare nibh sodales et. Vestibulum blandit, </p>
-                    <a href="blog-single-post-rightsidebar.html" class="btn btn-default">Read More</a> <div class="hs_margin_20"></div></div>
+                    <a href="#" class="btn btn-default">Read More</a> <div class="hs_margin_20"></div></div>
                 </div>
               </div>
             </div>
@@ -258,7 +258,7 @@
                       <div class="col-lg-6 col-md-7 col-sm-12">
                         <h4>Pelln sque vitae dolor non.</h4>
                         <p>Cras sodaleut ligula, velit enim quis, neatis feugiat ante. Ut arcu nulla.Cras velit ligula, sodaleut enim quis, venenatis feugiat ante. lus facilisis nisl. </p>
-                        <a href="blog-single-post-rightsidebar.html" class="btn btn-default pull-right">Read More</a>
+                        <a href="#" class="btn btn-default pull-right">Read More</a>
     				  </div>
                   </div>
                 </div>
@@ -278,7 +278,7 @@
                       <div class="col-lg-6 col-md-7 col-sm-12">
                         <h4>Pelln sque vitae dolor non.</h4>
                         <p>Cras sodaleut ligula, velit enim quis, neatis feugiat ante. Ut arcu nulla.Cras velit ligula, sodaleut enim quis, venenatis feugiat ante. lus facilisis nisl. </p>
-                        <a href="blog-single-post-rightsidebar.html" class="btn btn-default pull-right">Read More</a> </div>
+                        <a href="#" class="btn btn-default pull-right">Read More</a> </div>
                   </div>
                 </div>
               </div>
@@ -297,7 +297,7 @@
                       <div class="col-lg-6 col-md-7 col-sm-12">
                         <h4>Pelln sque vitae dolor non.</h4>
                         <p>Cras sodaleut ligula, velit enim quis, neatis feugiat ante. Ut arcu nulla.Cras velit ligula, sodaleut enim quis, venenatis feugiat ante. lus facilisis nisl. </p>
-                        <a href="blog-single-post-rightsidebar.html" class="btn btn-default pull-right">Read More</a> </div>
+                        <a href="#" class="btn btn-default pull-right">Read More</a> </div>
                   </div>
                 </div>
               </div>
@@ -316,7 +316,7 @@
                       <div class="col-lg-6 col-md-7 col-sm-12">
                         <h4>Pelln sque vitae dolor non.</h4>
                         <p>Cras sodaleut ligula, velit enim quis, neatis feugiat ante. Ut arcu nulla.Cras velit ligula, sodaleut enim quis, venenatis feugiat ante. lus facilisis nisl. </p>
-                        <a href="blog-single-post-rightsidebar.html" class="btn btn-default pull-right">Read More</a> </div>
+                        <a href="#" class="btn btn-default pull-right">Read More</a> </div>
                   </div>
                 </div>
               </div>
