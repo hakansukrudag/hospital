@@ -29,6 +29,18 @@ Route::get('/admin', function () {
     return view('admin_dashboard');
 });
 
+Route::get('/game/game1', function () {
+    return view('pages.game1');
+})->name('game1');
+
+Route::get('/game/game2', function () {
+    return view('pages.game2');
+})->name('game2');
+
+Route::get('/game/game3', function () {
+    return view('pages.game3');
+})->name('game3');
+
 Auth::routes();
 
 /**
@@ -42,6 +54,13 @@ Route::post('/user/dashboard/profile', [App\Http\Controllers\UserController::cla
  */
 Route::get('/user/dashboard/contact-details', [App\Http\Controllers\UserController::class, 'showContactDetails'])->name('showContactDetails');
 Route::post('/user/dashboard/contact-details', [App\Http\Controllers\UserController::class, 'storeContactDetails'])->name('storeContactDetails');
+
+/**
+ *  User Procedure
+ */
+Route::get('/user/dashboard/contact-details', [App\Http\Controllers\UserController::class, 'showContactDetails'])->name('showContactDetails');
+Route::post('/user/dashboard/contact-details', [App\Http\Controllers\UserController::class, 'storeContactDetails'])->name('storeContactDetails');
+
 
 /********************************************
  * AJAX Routes

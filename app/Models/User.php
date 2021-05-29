@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Models\Contact;
 
 class User extends Authenticatable
 {
@@ -45,5 +43,14 @@ class User extends Authenticatable
     public function contactDetails()
     {
         return $this->belongsTo(Contact::class, 'fk_contact_id', 'id');
+    }
+    public function medicineDetails()
+    {
+        return $this->belongsTo(Medicine::class, 'fk_medicine_id', 'id');
+    }
+
+    public function appointmentDetails()
+    {
+        return $this->hasMany(Appointment::class, 'fk_user_id', 'id');
     }
 }

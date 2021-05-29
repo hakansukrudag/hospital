@@ -50,11 +50,11 @@
               <li><a href="#">Play</a>
 
                   <ul>
-                      <li><a href="/game1/index.html">Game1 Coloring Book</a></li>
+                      <li><a href="{{ route('game1') }}">Game1 Coloring Book</a></li>
 
-                      <li><a href="/game2/index.html">Game2 Rock-Paper-Scissors</a></li>
+                      <li><a href="{{ route('game2') }}">Game2 Rock-Paper-Scissors</a></li>
 
-                      <li><a href="/game3/index.html">Game3 </a></li>
+                      <li><a href="{{ route('game3') }}">Game3 </a></li>
 
 
                   </ul>
