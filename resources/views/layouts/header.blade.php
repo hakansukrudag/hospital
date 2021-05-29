@@ -43,22 +43,10 @@
 
               </li>
               <li><a href="{{ url('/about') }}">About</a></li>
-              <li><a>Clicical</a>
-                <ul>
-                  <li><a href="#">Sub</a></li>
 
-
-                </ul>
-              </li>
 
                   @if (Auth::user())
-              <li><a>Profile</a>
-                    <ul>
-                      <li><a href="#">profile single</a></li>
-                    </ul>
-                  </li>
 
-              </li>
               <li><a href="#">Play</a>
 
                   <ul>
