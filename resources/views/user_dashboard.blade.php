@@ -46,16 +46,22 @@
             @endif
 
             <!-- Appointment Details-->
-            @if(!$appointment->isEmpty())
+            @if(!$appointments->isEmpty())
                 <div style="margin-bottom: 20px;">
                     <h2>Appointment Details</h2>
-                    <ul>
-                        <li>Date: {{ $appointment->date_time ?? '' }}</li>
-                        <li>Department: </li>
-                        <li>Procedure:</li>
-                        <li>Doctor:</li>
-                        <li>Map:</li>
-                    </ul>
+                    @foreach($appointments as $key => $value)
+                        <h1>
+                           {{ ( $key + 1) }}.
+                        </h1>
+                        <ul>
+                            <li>Date: {{ $value->date_time ?? '' }}</li>
+                            <li>Department: {{ optional($value->department)->name }} </li>
+                            <li>Procedure: {{ optional($value->procedure)->name }}</li>
+                            <li>Doctor: {{ optional(optional($value->department)->consultant)->name }}</li>
+                            <li>Map: {{ optional($value->department)->map_image }}</li>
+                        </ul>
+                        <hr>
+                    @endforeach
                 </div>
             @endif
         </div>

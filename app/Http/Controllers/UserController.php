@@ -30,12 +30,12 @@ class UserController extends Controller
             $medicineDetails = $user->medicineDetails ?? null;
         }
 
-        $appointment = optional($user->appointmentDetails);
+        $appointments = $user->appointmentDetails;
 
         return view('user_dashboard',
             compact('user',
                     'contactDetails',
-                    'appointment',
+                    'appointments',
                     'medicineDetails'));
     }
 
