@@ -50,7 +50,7 @@
                 <div style="margin-bottom: 20px;">
                     <h2>Appointment Details</h2>
                     <ul>
-                        <li>Date: {{ $appointment->date_time }}</li>
+                        <li>Date: {{ $appointment->date_time ?? '' }}</li>
                         <li>Department: </li>
                         <li>Procedure:</li>
                         <li>Doctor:</li>
