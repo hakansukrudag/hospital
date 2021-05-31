@@ -90,6 +90,27 @@ class AdminController extends Controller
         return response()->json(['success' => true]);
     }
 
+    public function departmentDelete(Request $request)
+    {
+        $id = $request->input('id');
+
+        Department::find($id)->delete();
+        return response()->json(['success' => true]);
+    }
+
+    public function departmentAdd(Request $request)
+    {
+        $this->validate($request, [
+            'departmentName' => 'required|max:255',
+        ]);
+
+        $newDepartmentRecord = new Department();
+        $newDepartmentRecord->name = $request->input('departmentName');
+        $newDepartmentRecord->save();
+
+        return response()->json(['success' => true]);
+    }
+
     public function procedureDelete(Request $request)
     {
         $id = $request->input('id');
@@ -189,6 +210,32 @@ class AdminController extends Controller
             ]
         );
     }
+
+    public function storeDepartmentChanges(Request $request)
+    {
+        $id = $request->input('departmentEditId');
+        $this->validate($request, [
+            'departmentEditName' => 'required',
+
+        ]);
+
+        $department = Department::find($id);
+        $department->name = $request->input('departmentEditName');
+
+        $department->save();
+        return response()->json(['success => true']);
+    }
+
+    public function departmentShow(Request $request)
+    {
+        $department = department::find($request->input('id'));
+        return response()->json(
+            [
+                'department' => $department,
+            ]
+        );
+    }
+
 
     public function storeProcedureChanges(Request $request)
     {

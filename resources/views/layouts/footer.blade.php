@@ -22,7 +22,7 @@
                 <a href="{{ url('/') }}"><img src="{{ asset('images/logom.svg') }}" alt="logo" width="180" height="41" /></a> </div>
               <div class="col-lg-9 col-md-8 col-sm-12 hs_about_us">
                 <div class="hs_margin_60"></div>
-                <p>Aenean facilisis sodales est neciMorbi vitapurus on Est facilisisro convallis commodo velante, tiam ltricies lputate.Aenean facilisis sodales est neciMorbi vitapurus on Est facilisisro convallis commodo velante, tiam ltricies lputate. </p>
+                <p>We provide comprehensive NHS primary care services to help you manage your health and well-being. Please find further information below, about our Practice, which we hope you will find useful. </p>
               </div>
             </div>
           </div>

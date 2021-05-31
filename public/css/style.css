@@ -471,7 +471,7 @@ ul.pattern li #style {
 }
 /**************logo start**********************/
 #hs_header #hs_logo {
-	margin: 20px 0px;
+	margin: 16px 0px;
 }
 #hs_header #hs_logo a{
 	display:inline-block;
@@ -480,7 +480,7 @@ ul.pattern li #style {
 	width: 100%;
 }
 #hs_header.fixed #hs_logo {
-	margin: 15px 0;
+	margin: 14px 0;
 }
 /**************logo end**********************/
 #hs_header a {
@@ -4220,7 +4220,7 @@ div[data-target] > div {
 
 #hs_header #hs_logo,
 #hs_header .hs_social ul{
-	margin: 24px auto;
+	margin: 20px auto;
 }
 .hs_page_title,
 .health_slider{
@@ -4282,7 +4282,7 @@ div[data-target] > div {
     margin-top: 5px;
 }
 #hs_header #hs_logo {
-    margin: 10px 0px;
+    margin: 8px 0px;
 }
 .fixed .hs_search_box {
     top: 22px;
@@ -4403,7 +4403,7 @@ div[data-target] > div {
 	margin: 0px;
 }
 #hs_header.fixed #hs_logo {
-    margin: 5px 0;
+    margin: 4px 0;
 }
 .hc_fixed_header .hs_menu li > a {
 	margin: 2px 0px 0px 0px !important;
@@ -4628,7 +4628,7 @@ div[data-target] > div {
     margin-top: 5px;
 }
 #hs_header #hs_logo {
-    margin: 10px 0px;
+    margin: 8px 0px;
 }
 .hs_nav_toggle {
     padding: 0px;

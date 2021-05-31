@@ -24,7 +24,7 @@
   <div class="container">
     <div class="row">
         <div class="col-lg-2 col-md-2 col-sm-12">
-          <div id="hs_logo" > <a href="{{ url('/') }}"> <img src="{{ asset('images/logom.svg') }}" alt=""> </a> </div>
+          <div id="hs_logo" > <a href="{{ url('/') }}"> <img src="{{ asset('images/logom.png') }}" alt=""> </a> </div>
           <!-- #logo -->
         </div>
         <div class="col-lg-8 col-md-8 col-sm-10">
@@ -85,18 +85,11 @@
               <li><a href=""><i class="fa fa-facebook"></i></a></li>
               <li><a href=""><i class="fa fa-twitter"></i></a></li>
              <!--  <li><a href=""><i class="fa fa-google-plus"></i></a></li> -->
-              <li><a href="" id="hs_search"><i class="fa fa-search"></i></a></li>
+
             </ul>
 
           </div>
-          <div class="hs_search_box">
-            <form class="form-inline" role="form">
-              <div class="form-group has-success has-feedback">
-                <input type="text" class="form-control" id="inputSuccess4" placeholder="Search">
-                <span class="glyphicon glyphicon-search form-control-feedback"></span> </div>
-            </form>
 
-          </div>
 
           <!-- #logo -->
         </div>

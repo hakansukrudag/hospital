@@ -82,6 +82,11 @@ Route::post('/consultant/add', [App\Http\Controllers\AdminController::class, 'co
 Route::get('/consultant/show', [App\Http\Controllers\AdminController::class, 'consultantShow'])->name('consultantShow');
 Route::post('/consultant/store', [App\Http\Controllers\AdminController::class, 'storeConsultantChanges'])->name('storeConsultantChanges');
 
+Route::post('/department/delete', [App\Http\Controllers\AdminController::class, 'departmentDelete'])->name('departmentDelete');
+Route::post('/department/add', [App\Http\Controllers\AdminController::class, 'departmentAdd'])->name('departmentAdd');
+Route::get('/department/show', [App\Http\Controllers\AdminController::class, 'departmentShow'])->name('departmentShow');
+Route::post('/department/store', [App\Http\Controllers\AdminController::class, 'storeDepartmentChanges'])->name('storeDepartmentChanges');
+
 Route::post('/medicine/delete', [App\Http\Controllers\AdminController::class, 'medicineDelete'])->name('medicineDelete');
 Route::post('/medicine/add', [App\Http\Controllers\AdminController::class, 'medicineAdd'])->name('medicineAdd');
 Route::get('/medicine/show', [App\Http\Controllers\AdminController::class, 'medicineShow'])->name('medicineShow');

@@ -237,10 +237,10 @@
         <!--Book an Appointment end-->
       </div>
 
-      <!--Up Coming Events start-->
+      <!--News & Up Coming Events start-->
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
-          <h4 class="hs_heading">Up Coming Events</h4>
+          <h4 class="hs_heading">News</h4>
           <div class="up_coming_events">
             <div id="up_coming_events_slider" class="owl-carousel owl-theme">
               <div class="up_coming_events_slider_item">
@@ -254,10 +254,12 @@
                 </div>
                 <div class="hs_event_div">
                   <div class="row">
-                      <div class="col-lg-6 col-md-5 col-sm-6"> <img src="http://placehold.it/155X235" alt="" /> </div>
+                      <div class="col-lg-6 col-md-5 col-sm-6"> <img src="{{ asset('images/4_155.jpg') }}" alt="" /> </div>
                       <div class="col-lg-6 col-md-7 col-sm-12">
-                        <h4>Pelln sque vitae dolor non.</h4>
-                        <p>Cras sodaleut ligula, velit enim quis, neatis feugiat ante. Ut arcu nulla.Cras velit ligula, sodaleut enim quis, venenatis feugiat ante. lus facilisis nisl. </p>
+                        <h4>Patient Access</h4>
+                        <p>Repeat prescriptions Register to order repeat prescriptions online 24/7. This will save busy telephone phones lines or call queues. Your request is authorised online by the practice, so you know
+
+                        </p>
                         <a href="#" class="btn btn-default pull-right">Read More</a>
     				  </div>
                   </div>
@@ -274,10 +276,12 @@
                 </div>
                 <div class="hs_event_div">
                   <div class="row">
-                      <div class="col-lg-6 col-md-5 col-sm-6"> <img src="http://placehold.it/155X235" alt="" /> </div>
+                      <div class="col-lg-6 col-md-5 col-sm-6"> <img src="{{ asset('images/1_155.jpg') }}" alt="" /> </div>
                       <div class="col-lg-6 col-md-7 col-sm-12">
-                        <h4>Pelln sque vitae dolor non.</h4>
-                        <p>Cras sodaleut ligula, velit enim quis, neatis feugiat ante. Ut arcu nulla.Cras velit ligula, sodaleut enim quis, venenatis feugiat ante. lus facilisis nisl. </p>
+                        <h4>Coronavirus (COVID-19)</h4>
+                        <p>Visit NHS inform if you are worried or want more information http/www.nhsinform.scot Symptoms of coronavirus (COVID-19) include high temperature or fever, cough
+
+                        </p>
                         <a href="#" class="btn btn-default pull-right">Read More</a> </div>
                   </div>
                 </div>
@@ -293,10 +297,10 @@
                 </div>
                 <div class="hs_event_div">
                   <div class="row">
-                      <div class="col-lg-6 col-md-5 col-sm-6"> <img src="http://placehold.it/155X235" alt="" /> </div>
+                      <div class="col-lg-6 col-md-5 col-sm-6"> <img src="{{ asset('images/2_155.jpg') }}" alt="" /> </div>
                       <div class="col-lg-6 col-md-7 col-sm-12">
-                        <h4>Pelln sque vitae dolor non.</h4>
-                        <p>Cras sodaleut ligula, velit enim quis, neatis feugiat ante. Ut arcu nulla.Cras velit ligula, sodaleut enim quis, venenatis feugiat ante. lus facilisis nisl. </p>
+                        <h4>NHS Pharmacy First Scotland</h4>
+                        <p>Minor illness?- then see your Pharmacist first If you have a minor illness, a pharmacy is the first place you should go for advice You do not usually need an </p>
                         <a href="#" class="btn btn-default pull-right">Read More</a> </div>
                   </div>
                 </div>
@@ -312,10 +316,10 @@
                 </div>
                 <div class="hs_event_div">
                   <div class="row">
-                      <div class="col-lg-6 col-md-5 col-sm-6"> <img src="http://placehold.it/155X235" alt="" /> </div>
+                      <div class="col-lg-6 col-md-5 col-sm-6"> <img src="{{ asset('images/3_155.jpg') }}" alt="" /> </div>
                       <div class="col-lg-6 col-md-7 col-sm-12">
-                        <h4>Pelln sque vitae dolor non.</h4>
-                        <p>Cras sodaleut ligula, velit enim quis, neatis feugiat ante. Ut arcu nulla.Cras velit ligula, sodaleut enim quis, venenatis feugiat ante. lus facilisis nisl. </p>
+                        <h4>Pertussis – Pregnant women.</h4>
+                        <p>The Scottish Government  introduced a  programme that all pregnant women should be vaccinated against pertussis,from 16 weeks of the pregnancy. </p>
                         <a href="#" class="btn btn-default pull-right">Read More</a> </div>
                   </div>
                 </div>
@@ -334,29 +338,29 @@
           <h4 class="hs_heading" id="hs_meat_doc">Our Doctor Team</h4>
           <div class="our_doctor_team">
             <div id="our_doctor_team_slider" class="owl-carousel owl-theme">
-              <div class="our_doctor_team_slider_item"> <img src="http://placehold.it/360X360" alt="" />
+              <div class="our_doctor_team_slider_item"> <img src="{{ asset('images/dr1.jpg') }}" alt="" />
                 <div class="hs_team_member_detail">
                   <h3>Dr Johnathan Treat</h3>
-                  <p>Quisque vitae interdum ipsum. Nulla eget mpernulla. Proin lacinia urna </p>
-                  <a href="profile-single.html" class="btn btn-default">Read More</a> </div>
+                  <p>M.B.Ch.B. (University of Glasgow 1988), M.R.C.G.P., D.R.C.O.G. </p>
+                  <a href="#" class="btn btn-default">Read More</a> </div>
               </div>
-              <div class="our_doctor_team_slider_item"> <img src="http://placehold.it/360X360" alt="" />
+              <div class="our_doctor_team_slider_item"> <img src="{{ asset('images/dr2.jpg') }}" alt="" />
                 <div class="hs_team_member_detail">
                   <h3>Dr. Edwin Spindrift</h3>
-                  <p>Quisque vitae interdum ipsum. Nulla eget mpernulla. Proin lacinia urna </p>
-                  <a href="profile-single.html" class="btn btn-default">Read More</a> </div>
+                  <p>MBChB (University of Glasgow 2009), M.R.C.G.P. </p>
+                  <a href="#" class="btn btn-default">Read More</a> </div>
               </div>
-              <div class="our_doctor_team_slider_item"> <img src="http://placehold.it/360X360" alt="" />
+              <div class="our_doctor_team_slider_item"> <img src="{{ asset('images/dr3.jpg') }}" alt="" />
                 <div class="hs_team_member_detail">
                   <h3>Dr Johnathan Treat</h3>
-                  <p>Quisque vitae interdum ipsum. Nulla eget mpernulla. Proin lacinia urna </p>
-                  <a href="profile-single.html" class="btn btn-default">Read More</a> </div>
+                  <p>M.B.Ch.B (University of Glasgow 1999), M.R.C.G.P,  D.C.H, D.R.C.O.G,  D.F.F.P</p>
+                  <a href="#" class="btn btn-default">Read More</a> </div>
               </div>
-              <div class="our_doctor_team_slider_item"> <img src="http://placehold.it/360X360" alt="" />
+              <div class="our_doctor_team_slider_item"> <img src="{{ asset('images/dr4.jpg') }}" alt="" />
                 <div class="hs_team_member_detail">
                   <h3>Dr. Edwin Spindrift</h3>
-                  <p>Quisque vitae interdum ipsum. Nulla eget mpernulla. Proin lacinia urna </p>
-                  <a href="profile-single.html" class="btn btn-default">Read More</a> </div>
+                  <p>B.Med.SCI. (Nottingham 2008) B.M., B.S (Nottingham 2010) R.C.G.P </p>
+                  <a href="#" class="btn btn-default">Read More</a> </div>
               </div>
             </div>
             <div class="customNavigation text-center"> <a class="btn_prev prev"><i class="fa fa-chevron-left"></i></a> <a class="btn_next next"><i class="fa fa-chevron-right"></i></a> </div>

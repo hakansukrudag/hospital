@@ -355,5 +355,5 @@ async function runGame(plans, Display) {
                                 Display);
     if (status == "won") level++;
   }
-  console.log("You've won!");
+  console.log("You've won Congratulations !");
 }
