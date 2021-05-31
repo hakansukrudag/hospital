@@ -65,9 +65,9 @@
                             @foreach($appointments as $appointment)
                                 <tr>
                                     <td>{{ $appointment->date_time->format('d-m-Y H:i:s') }}</td>
-                                    <td>{{ $appointment->user->name }}</td>
-                                    <td>{{ $appointment->department->name }}</td>
-                                    <td>{{ $appointment->procedure->name }}</td>
+                                    <td>{{ optional($appointment->user)->name }}</td>
+                                    <td>{{ optional($appointment->department)->name }}</td>
+                                    <td>{{ optional($appointment->procedure)->name }}</td>
                                     <td>
                                         <span><a href="" onclick="delAppointment({{ $appointment->id }})"><i class="fa fa-trash-o" aria-hidden="true"></i></a></span>
                                         <span><a href="" onclick="resetEditAppointmentModalBox({{ $appointment->id }}, event)"><i class="fa fa-edit" aria-hidden="true"></i></a></span>
